@@ -1,0 +1,68 @@
+.main {
+    display: block;
+}
+
+.cardsWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: 20rem 20rem 20rem 20rem;
+    column-gap: 3rem;
+    row-gap: 3rem;
+    margin-top: 2rem;
+}
+
+.flipEffect {
+    transition: all 1s ease-in-out;
+    transform-style: preserve-3d;
+    position: relative;
+    height: 20rem;
+    cursor: pointer;
+}
+
+.frontCard {
+    text-align: center;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.backCard {
+    /*position: relative;*/
+    position: absolute;
+    text-align: center;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
+
+.cardOverlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 2rem;
+    display: block;
+}
+
+.frontCardTheme {
+    text-transform: capitalize;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 4rem;
+    color: #1388fc;
+}
+
+.frontCardImage {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 2rem;
+}
