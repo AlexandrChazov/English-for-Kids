@@ -6,17 +6,11 @@ const cardInfo = {
   imageUrl: ''
 }
 
-const actions = {
+export const actions = {
   setMainPageCards: (themesArr: Array<CardsBaseKeysType>) => ({type: "main/setMainPageCards", themes: themesArr})
 }
 
-function shuffle(arr:Array<string>):any {
-  for (let i = arr.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr
-}
+
 
 // function getRandomKeys(obj:CardsBaseType):any {
 //   const objKeys = Object.keys(obj);
@@ -26,11 +20,7 @@ function shuffle(arr:Array<string>):any {
 
 // getRandomKeys(cardsBase)
 
-export const setThemes = () => {
-  return (dispatch: any)=>{
-    dispatch(actions.setMainPageCards(shuffle(Object.keys(cardsBase))))
-  }
-}
+
 
 const initialState = {
   firstTheme: cardInfo,
