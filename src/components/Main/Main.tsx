@@ -14,7 +14,7 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
       <div className={s.cardsWrapper}>
         <div className={s.cardsGrid}>
           {props.cardsInfo.map((el) => {
-            return <Card gameTheme={el.gameTheme} imageUrl={el.imageUrl}/>
+            return el && <Card gameTheme={el.gameTheme} imageUrl={el.imageUrl}/>
           })}
         </div>
       </div>

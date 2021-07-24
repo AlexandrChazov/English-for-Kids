@@ -1,4 +1,3 @@
-import React from "react"
 import {CardInfoType, actions} from "../../redux/main-reducer"
 import {connect} from "react-redux";
 import Main from "./Main";

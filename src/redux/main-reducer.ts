@@ -1,4 +1,4 @@
-import cardsBase, {CardsBaseKeysType, CardsBaseType} from "./cardsBase"
+import cardsBase, {CardsBaseKeysType} from "./cardsBase"
 import {InferActionsTypes} from "./redux-store";
 
 const cardInfo = {
@@ -7,30 +7,11 @@ const cardInfo = {
 }
 
 export const actions = {
-  setMainPageCards: (themesArr: Array<CardsBaseKeysType>) => ({type: "main/setMainPageCards", themes: themesArr})
+  setMainPageCards: (arr: Array<CardsBaseKeysType>) => ({type: "main/setMainPageCards", arrayOfThemes: arr})
 }
 
-
-// function getRandomKeys(obj:CardsBaseType):any {
-//   const objKeys = Object.keys(obj);
-//   shuffle(Object.keys(obj));
-//   return objKeys;
-// }
-
-// getRandomKeys(cardsBase)
-
-
 const initialState = {
-  cardsInfo: [
-    cardInfo,
-    cardInfo,
-    cardInfo,
-    cardInfo,
-    cardInfo,
-    cardInfo,
-    cardInfo,
-    cardInfo
-  ]
+  cardsInfo: [cardInfo]
 }
 
 const mainReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -38,41 +19,12 @@ const mainReducer = (state = initialState, action: ActionsType): InitialStateTyp
     case "main/setMainPageCards": {
       return {
         ...state,
-        cardsInfo: [
-          {
-
-              gameTheme: action.themes[0],
-              imageUrl: cardsBase[action.themes[0]].firstWord.imageUrl
-          },
-          {
-              gameTheme: action.themes[1],
-              imageUrl: cardsBase[action.themes[1]].firstWord.imageUrl
-          },
-          {
-              gameTheme: action.themes[2],
-              imageUrl: cardsBase[action.themes[2]].firstWord.imageUrl
-          },
-          {
-              gameTheme: action.themes[3],
-              imageUrl: cardsBase[action.themes[3]].firstWord.imageUrl
-          },
-          {
-              gameTheme: action.themes[4],
-              imageUrl: cardsBase[action.themes[4]].firstWord.imageUrl
-          },
-          {
-              gameTheme: action.themes[5],
-              imageUrl: cardsBase[action.themes[5]].firstWord.imageUrl
-          },
-          {
-              gameTheme: action.themes[6],
-              imageUrl: cardsBase[action.themes[6]].firstWord.imageUrl
-          },
-          {
-              gameTheme: action.themes[7],
-              imageUrl: cardsBase[action.themes[7]].firstWord.imageUrl
-          },
-        ]
+        cardsInfo: action.arrayOfThemes.map((themeName) => {
+          return {
+            gameTheme: themeName,
+            imageUrl: cardsBase[themeName][0].imageUrl
+          }
+        })
       }
     }
   }
