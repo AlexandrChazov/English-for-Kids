@@ -1,7 +1,7 @@
 
 const cardsBase = {
 
-  actions: {
+  "actions": {
     firstWord: {
       wordInEnglish: 'clean',
       wordInRussian: 'убирать',
@@ -52,7 +52,7 @@ const cardsBase = {
     },
   },
 
-  animals: {
+  "animals": {
     firstWord: {
       wordInEnglish: 'cat',
       wordInRussian: 'кошка',
@@ -103,7 +103,7 @@ const cardsBase = {
     },
   },
 
-  food: {
+  "food": {
     firstWord:{
       wordInEnglish: 'bean',
       wordInRussian: 'фасоль',
@@ -154,7 +154,7 @@ const cardsBase = {
     },
   },
 
-  months: {
+  "months": {
     firstWord:{
       wordInEnglish: 'april',
       wordInRussian: 'апрель',
@@ -205,7 +205,7 @@ const cardsBase = {
     },
   },
 
-  proffesions: {
+  "professions": {
     firstWord:{
       wordInEnglish: 'actor',
       wordInRussian: 'актёр',
@@ -256,7 +256,7 @@ const cardsBase = {
     },
   },
 
-  sea_animals: {
+  "sea animals": {
     firstWord:{
       wordInEnglish: 'octopus',
       wordInRussian: 'осьминог',
@@ -307,7 +307,7 @@ const cardsBase = {
     },
   },
 
-  transport: {
+  "transport": {
     firstWord:{
       wordInEnglish: 'airplane',
       wordInRussian: 'самолёт',
@@ -358,7 +358,7 @@ const cardsBase = {
     },
   },
 
-  other: {
+  "other": {
     firstWord:{
       wordInEnglish: 'boat',
       wordInRussian: 'лодка',

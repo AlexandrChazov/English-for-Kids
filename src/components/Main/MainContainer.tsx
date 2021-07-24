@@ -1,3 +1,4 @@
+import React from "react"
 import {CardInfoType, actions} from "../../redux/main-reducer"
 import {connect} from "react-redux";
 import Main from "./Main";
@@ -15,14 +16,16 @@ function shuffle(arr: Array<string>): any {
 
 const MapStateToProps = (state: AppStateType) => {
   return {
-    firstTheme: state.mainPage.firstTheme,
-    secondTheme: state.mainPage.secondTheme,
-    thirdTheme: state.mainPage.thirdTheme,
-    fourthTheme: state.mainPage.fourthTheme,
-    fifthTheme: state.mainPage.fifthTheme,
-    sixthTheme: state.mainPage.sixthTheme,
-    seventhTheme: state.mainPage.seventhTheme,
-    eighthTheme: state.mainPage.eighthTheme
+    cardsInfo: [
+      state.mainPage.cardsInfo[0],
+      state.mainPage.cardsInfo[1],
+      state.mainPage.cardsInfo[2],
+      state.mainPage.cardsInfo[3],
+      state.mainPage.cardsInfo[4],
+      state.mainPage.cardsInfo[5],
+      state.mainPage.cardsInfo[6],
+      state.mainPage.cardsInfo[7]
+    ]
   }
 }
 
@@ -39,14 +42,7 @@ export default compose(
 )(Main)
 
 export type MapStatePropsType = {
-  firstTheme: CardInfoType,
-  secondTheme: CardInfoType,
-  thirdTheme: CardInfoType,
-  fourthTheme: CardInfoType,
-  fifthTheme: CardInfoType,
-  sixthTheme: CardInfoType,
-  seventhTheme: CardInfoType,
-  eighthTheme: CardInfoType
+  cardsInfo: Array<CardInfoType>
 }
 
 export type MapDispatchPropsType = {

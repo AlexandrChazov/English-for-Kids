@@ -6,7 +6,8 @@
     top: 0;
     left: 0;
     background-color: #faf5ad;
-    display: flex;
+    /*display: flex;*/
+    display: none;
     justify-content: center;
     align-items: center;
     border-radius: 0 20% 20% 0;
