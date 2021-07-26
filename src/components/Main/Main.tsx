@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import s from "./Main.module.css";
-import style from "./Card.module.css";
 import {MapDispatchPropsType, MapStatePropsType} from "./MainContainer";
+import Card from "./Card";
 
 const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
 
@@ -14,28 +14,20 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
       <div className={s.cardsWrapper}>
         <div className={s.cardsGrid}>
           {props.cardsInfo.map((el) => {
-            return el && <Card gameTheme={el.gameTheme} imageUrl={el.imageUrl}/>
+            return el &&
+              <div onClick ={()=>{el.gameTheme && props.insertTheme(el.gameTheme)}}>
+                <Card
+                  gameTheme={el.gameTheme}
+                  wordInEnglish={el.wordInEnglish}
+                  wordInRussian={el.wordInRussian}
+                  imageUrl={el.imageUrl}
+                  audioSrc={el.audioSrc}/>
+              </div>
           })}
         </div>
       </div>
     </div>
   )
-}
-
-const Card: React.FC<CardMapStatePropsType> = (props) => {
-  return (
-    <div className={style.flipEffect}>
-      <div className={style.frontCard}>
-        <h3 className={style.frontCardTheme}>{props.gameTheme}</h3>
-        <img className={style.frontCardImage} src={process.env.PUBLIC_URL + props.imageUrl} alt="logo"/>
-      </div>
-    </div>
-  )
-}
-
-type CardMapStatePropsType = {
-  gameTheme: string
-  imageUrl: string
 }
 
 export default Main;

@@ -7,7 +7,6 @@ import {Provider} from "react-redux";
 import store from "./redux/redux-store";
 
 function App() {
-  // @ts-ignore
   return (
     <Provider store={store}>
       <div className="App">

@@ -3,15 +3,8 @@ import {connect} from "react-redux";
 import Main from "./Main";
 import {AppStateType} from "../../redux/redux-store";
 import {compose} from "redux";
-import cardsBase from "../../redux/cardsBase";
-
-function shuffle(arr: Array<string>): any {
-  for (let i = arr.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr
-}
+import cardsBase, {CardsBaseKeysType} from "../../redux/cardsBase";
+import shuffle from "../Common/shuffle";
 
 const MapStateToProps = (state: AppStateType) => {
   return {
@@ -32,6 +25,9 @@ const MapDispatchToProps = (dispatch:any) => {
   return {
     setThemes: () => {
       dispatch(actions.setMainPageCards(shuffle(Object.keys(cardsBase))))
+    },
+    insertTheme: (theme: CardsBaseKeysType) => {
+      dispatch(actions.insertTheme(theme))
     }
   }
 }
@@ -45,7 +41,8 @@ export type MapStatePropsType = {
 }
 
 export type MapDispatchPropsType = {
-  setThemes: () => void
+  setThemes: () => void,
+  insertTheme: (theme: CardsBaseKeysType) => void
 }
 
 type OwnPropsType = {}
