@@ -1,20 +1,21 @@
+import React from "react";
 import s from "./Navbar.module.css";
 
 const Navbar = () => {
     return (
         <div className={s.navbar}>
-            <ul className={s.navList}>
-              <li className={s.navItem}>Main page</li>
-              <li className={s.navItem}>Actions</li>
-              <li className={s.navItem}>Animals</li>
-              <li className={s.navItem}>Food</li>
-              <li className={s.navItem}>Months</li>
-              <li className={s.navItem}>Professions</li>
-              <li className={s.navItem}>Sea animals</li>
-              <li className={s.navItem}>Transport</li>
-              <li className={s.navItem}>Other</li>
-              <li className={s.navItem}>Statistic</li>
-            </ul>
+            {/*<ul className={s.navList}>*/}
+            {/*  <li className={s.navItem} key={0}>Main page</li>*/}
+            {/*  <li className={s.navItem} key={1}>Actions</li>*/}
+            {/*  <li className={s.navItem} key={2}>Animals</li>*/}
+            {/*  <li className={s.navItem} key={3}>Food</li>*/}
+            {/*  <li className={s.navItem} key={4}>Months</li>*/}
+            {/*  <li className={s.navItem} key={5}>Professions</li>*/}
+            {/*  <li className={s.navItem} key={6}>Sea animals</li>*/}
+            {/*  <li className={s.navItem} key={7}>Transport</li>*/}
+            {/*  <li className={s.navItem} key={8}>Other</li>*/}
+            {/*  <li className={s.navItem} key={9}>Statistic</li>*/}
+            {/*</ul>*/}
         </div>
     )
 }

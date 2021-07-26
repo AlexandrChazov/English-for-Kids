@@ -13,9 +13,10 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
     <div className={s.main}>
       <div className={s.cardsWrapper}>
         <div className={s.cardsGrid}>
-          {props.cardsInfo.map((el) => {
+          {props.cardsInfo.map((el, index) => {
             return el &&
-              <div onClick ={()=>{el.gameTheme && props.insertTheme(el.gameTheme)}}>
+              <div key={index}
+                   onClick ={()=>{el.gameTheme && props.insertTheme(el.gameTheme)}}>
                 <Card
                   gameTheme={el.gameTheme}
                   wordInEnglish={el.wordInEnglish}
