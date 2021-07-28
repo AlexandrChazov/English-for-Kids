@@ -2,42 +2,44 @@ import cardsBase, {CardsBaseKeysType} from "./cardsBase"
 import {InferActionsTypes} from "./redux-store";
 import shuffle from "../components/Common/shuffle";
 
-const cardInfo = {
+const cardInfo: CardInfoType = {
   wordInEnglish: '',
   wordInRussian: '',
   imageUrl: '',
   audioSrc: '',
 }
 
-export const actions = {
+export const mainReducerActions = {
   setMainPageCards: (arr: Array<CardsBaseKeysType>) => ({type: "main/setMainPageCards", arrayOfThemes: arr}) as const,
-  insertTheme: (theme: CardsBaseKeysType) => ({type: "main/insertTheme", theme}) as const
+  insertTheme: (theme: CardsBaseKeysType) => ({type: "main/insertTheme", theme}) as const,
 }
 
 const initialState = {
-  cardsInfo: [cardInfo]
+  cardsInfo: [cardInfo],
+  arrayOfThemes: [] as Array<CardsBaseKeysType>
 }
 
-const mainReducer = (state = initialState, action: ActionsType): InitialStateType => {
+const mainReducer = (state:InitialStateType = initialState, action: ActionsType): InitialStateType => {
   switch (action.type) {
     case "main/setMainPageCards": {
       return {
         ...state,
-        cardsInfo: action.arrayOfThemes.map((themeName) => {
+        cardsInfo: shuffle(action.arrayOfThemes).map((themeName) => {
           return {
-            gameTheme: themeName,
             wordInEnglish: '',
             wordInRussian: '',
-            imageUrl: cardsBase[themeName][0].imageUrl,
+            imageUrl: cardsBase[themeName].mainImage,
             audioSrc: '',
+            gameTheme: themeName,
           }
-        })
+        }),
+        arrayOfThemes: action.arrayOfThemes
       }
     }
     case "main/insertTheme": {
       return {
         ...state,
-        cardsInfo: shuffle(cardsBase[action.theme])
+        cardsInfo: shuffle(cardsBase[action.theme].cards)
       }
     }
   }
@@ -55,4 +57,4 @@ export type CardInfoType = {
 };
 
 export type InitialStateType = typeof initialState;
-type ActionsType = InferActionsTypes<typeof actions>;
+type ActionsType = InferActionsTypes<typeof mainReducerActions>;

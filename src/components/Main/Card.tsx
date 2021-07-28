@@ -4,13 +4,12 @@ import style from "./Card.module.css";
 
 const Card: React.FC<CardInfoType> = (props) => {
 
-  const cardRef = useRef(null)
+  const cardRef = useRef(document.createElement("div"))
   const audio = new Audio();
   audio.src = process.env.PUBLIC_URL + props.audioSrc;
 
   return (
-    // @ts-ignore todo
-    <div onMouseLeave={(event) => cardRef.current.style.transform = ""}>
+    <div onMouseLeave={() => cardRef.current.style.transform = ""}>
       <div className={style.flipEffect}
            ref={cardRef}>
         <div className={style.frontCard}>

@@ -7,7 +7,7 @@
 .frontCard .frontCardTheme {
     text-transform: capitalize;
     position: absolute;
-    top: 10rem;
+    top: 0rem;
     width: 100%;
     text-align: center;
     font-family: 'Pacifico', cursive;
@@ -33,7 +33,7 @@
     position: absolute;
     font-family: 'Pacifico', cursive;
     font-size: 3rem;
-    top: 9.5rem;
+    top: 14.5rem;
     width: 100%;
     color: #383838;
     text-transform: capitalize;
@@ -87,7 +87,7 @@
     position: absolute;
     font-family: 'Pacifico', cursive;
     font-size: 3rem;
-    top: 9.5rem;
+    top: 14.5rem;
     width: 100%;
     color: #383838;
     text-transform: capitalize;

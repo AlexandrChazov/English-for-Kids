@@ -1,10 +1,9 @@
-import {CardInfoType, actions} from "../../redux/main-reducer"
+import {CardInfoType, mainReducerActions} from "../../redux/main-reducer"
 import {connect} from "react-redux";
 import Main from "./Main";
 import {AppStateType} from "../../redux/redux-store";
 import {compose} from "redux";
 import cardsBase, {CardsBaseKeysType} from "../../redux/cardsBase";
-import shuffle from "../Common/shuffle";
 
 const MapStateToProps = (state: AppStateType) => {
   return {
@@ -24,10 +23,11 @@ const MapStateToProps = (state: AppStateType) => {
 const MapDispatchToProps = (dispatch:any) => {
   return {
     setThemes: () => {
-      dispatch(actions.setMainPageCards(shuffle(Object.keys(cardsBase))))
+      //@ts-ignore todo
+      dispatch(mainReducerActions.setMainPageCards(Object.keys(cardsBase)))
     },
     insertTheme: (theme: CardsBaseKeysType) => {
-      dispatch(actions.insertTheme(theme))
+      dispatch(mainReducerActions.insertTheme(theme))
     }
   }
 }
