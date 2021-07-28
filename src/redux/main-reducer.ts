@@ -56,5 +56,5 @@ export type CardInfoType = {
   gameTheme?: CardsBaseKeysType,
 };
 
-export type InitialStateType = typeof initialState;
+type InitialStateType = typeof initialState;
 type ActionsType = InferActionsTypes<typeof mainReducerActions>;

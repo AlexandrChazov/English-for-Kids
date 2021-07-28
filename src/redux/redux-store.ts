@@ -1,8 +1,10 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import mainReducer from "./main-reducer";
 import navbarReducer from "./navbar-reducer";
+import headerReducer from "./header-reducer";
 
 const reducers = combineReducers({
+  header: headerReducer,
   mainPage: mainReducer,
   navbar: navbarReducer
 })
