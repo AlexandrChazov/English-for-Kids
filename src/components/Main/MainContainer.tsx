@@ -1,9 +1,9 @@
-import {CardInfoType, mainReducerActions} from "../../redux/main-reducer"
+import {MainReducerActionsType, CardInfoType, mainReducerActions} from "../../redux/main-reducer"
 import {connect} from "react-redux";
 import Main from "./Main";
 import {AppStateType} from "../../redux/redux-store";
-import {compose} from "redux";
-import cardsBase, {CardsBaseKeysType} from "../../redux/cardsBase";
+import {compose, Dispatch} from "redux";
+import {CardsBaseKeysType} from "../../redux/cardsBase";
 
 const MapStateToProps = (state: AppStateType) => {
   return {
@@ -16,15 +16,15 @@ const MapStateToProps = (state: AppStateType) => {
       state.mainPage.cardsInfo[5],
       state.mainPage.cardsInfo[6],
       state.mainPage.cardsInfo[7]
-    ]
+    ],
+    arrayOfThemes: state.navbar.arrayOfThemes
   }
 }
 
-const MapDispatchToProps = (dispatch:any) => {
+const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType>) => {
   return {
-    setThemes: () => {
-      //@ts-ignore todo
-      dispatch(mainReducerActions.setMainPageCards(Object.keys(cardsBase)))
+    setThemes: (arr: Array<CardsBaseKeysType>) => {
+      dispatch(mainReducerActions.setMainPageCards(arr))
     },
     insertTheme: (theme: CardsBaseKeysType) => {
       dispatch(mainReducerActions.insertTheme(theme))
@@ -37,11 +37,12 @@ export default compose(
 )(Main)
 
 export type MapStatePropsType = {
-  cardsInfo: Array<CardInfoType>
+  cardsInfo: Array<CardInfoType>,
+  arrayOfThemes: Array<CardsBaseKeysType>
 }
 
 export type MapDispatchPropsType = {
-  setThemes: () => void,
+  setThemes: (arr: Array<CardsBaseKeysType>) => void,
   insertTheme: (theme: CardsBaseKeysType) => void
 }
 

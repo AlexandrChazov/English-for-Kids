@@ -6,8 +6,8 @@ import Card from "./Card";
 const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
 
   useEffect(() => {
-    props.setThemes()
-  }, [])
+    props.setThemes(props.arrayOfThemes)
+  }, [props.arrayOfThemes])
 
   return (
     <div className={s.main}>

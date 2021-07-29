@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {combineReducers, createStore} from "redux";
 import mainReducer from "./main-reducer";
 import navbarReducer from "./navbar-reducer";
 import headerReducer from "./header-reducer";
@@ -9,7 +9,7 @@ const reducers = combineReducers({
   navbar: navbarReducer
 })
 
-const store = createStore(reducers, applyMiddleware());
+const store = createStore(reducers);
 
 type reducersType = typeof reducers; //  вернёт что-то вроде функции (globalstate: AppStateType) => AppStateType
 export type AppStateType = ReturnType<reducersType>  // определить тип возвращаемого значения

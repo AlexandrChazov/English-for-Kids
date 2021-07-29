@@ -1,12 +1,14 @@
 import React, {useEffect} from "react";
 import s from "./Navbar.module.css";
 import {MapDispatchPropsType, MapStatePropsType} from "./NavbarContainer";
-import cardsBase from "../../redux/cardsBase";
 import ThemeLink from "./ThemeLink";
+import {Link} from "react-router-dom";
 
 const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
   useEffect(() => {
-    props.hideNavbar()
+    props.hideNavbar();
+    props.getArrayOfThemes();
+    props.getArrayOfNavbarIconsUrl()
   }, [])
 
   function onButtonClick(event: React.MouseEvent) {
@@ -28,31 +30,36 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
 
       <ul className={s.navList}>
         <li className={s.navItem}>
-          <button className={s.chooseThemeButton}
-                  onClick={(event) => {
-                    onButtonClick(event)
-                    props.setMainPageCards();
-                  }}>
-            Main Page
-          </button>
+          <Link to="/">
+            <button className={s.chooseThemeButton}
+                    onClick={(event) => {
+                      onButtonClick(event)
+                      props.setMainPageCards(props.arrayOfThemes);
+                    }}>
+              Main Page
+            </button>
+          </Link>
+
         </li>
 
         {props.arrayOfThemes.map((theme, index) => {
           return <ThemeLink
             key={index}
             theme={theme}
-            navbarImage={cardsBase[theme].navbarImage}    //todo компонента не должна обращаться к базе данных
+            navbarImage={props.arrayOfNavbarIconsUrl[index]}
             insertTheme={props.insertTheme}
             onButtonClick={onButtonClick}/>
         })}
 
         <li className={s.navItem}>
-          <button className={s.chooseThemeButton}
-                  onClick={(event) => {
-                    onButtonClick(event)
-                  }}>
-            Statistic
-          </button>
+          <Link to="/Statistic">
+            <button className={s.chooseThemeButton}
+                    onClick={(event) => {
+                      onButtonClick(event)
+                    }}>
+              Statistic
+            </button>
+          </Link>
         </li>
       </ul>
     </div>

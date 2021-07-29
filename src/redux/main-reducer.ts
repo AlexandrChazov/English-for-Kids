@@ -16,10 +16,9 @@ export const mainReducerActions = {
 
 const initialState = {
   cardsInfo: [cardInfo],
-  arrayOfThemes: [] as Array<CardsBaseKeysType>
 }
 
-const mainReducer = (state:InitialStateType = initialState, action: ActionsType): InitialStateType => {
+const mainReducer = (state:InitialStateType = initialState, action: MainReducerActionsType): InitialStateType => {
   switch (action.type) {
     case "main/setMainPageCards": {
       return {
@@ -33,7 +32,6 @@ const mainReducer = (state:InitialStateType = initialState, action: ActionsType)
             gameTheme: themeName,
           }
         }),
-        arrayOfThemes: action.arrayOfThemes
       }
     }
     case "main/insertTheme": {
@@ -57,4 +55,4 @@ export type CardInfoType = {
 };
 
 type InitialStateType = typeof initialState;
-type ActionsType = InferActionsTypes<typeof mainReducerActions>;
+export type MainReducerActionsType = InferActionsTypes<typeof mainReducerActions>;

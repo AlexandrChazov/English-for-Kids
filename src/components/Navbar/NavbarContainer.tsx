@@ -1,24 +1,32 @@
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import Navbar from "./Navbar";
-import {navbarReducerActions} from "../../redux/navbar-reducer";
-import cardsBase, {CardsBaseKeysType} from "../../redux/cardsBase";
-import {mainReducerActions} from "../../redux/main-reducer";
+import {
+  getArrayOfNavbarIconsUrl,
+  getArrayOfThemes,
+  navbarReducerActions,
+  NavbarReducerActionsType
+} from "../../redux/navbar-reducer";
+import {CardsBaseKeysType} from "../../redux/cardsBase";
+import {MainReducerActionsType, mainReducerActions} from "../../redux/main-reducer";
+import {Dispatch} from "redux";
 
 const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     isNavbarShown: state.navbar.isNavbarShown,
-    arrayOfThemes: state.mainPage.arrayOfThemes
+    arrayOfThemes: state.navbar.arrayOfThemes,
+    arrayOfNavbarIconsUrl: state.navbar.arrayOfNavbarIconsUrl
   }
 }
 
-const MapDispatchToProps = (dispatch:any) => {    //todo
+const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | NavbarReducerActionsType>) => {
   return {
     hideNavbar: () => dispatch(navbarReducerActions.hideNavbar()),
     changeNavbarVisibility: (arg: boolean) => dispatch(navbarReducerActions.changeNavbarVisibility(arg)),
     insertTheme: (theme: CardsBaseKeysType) => dispatch(mainReducerActions.insertTheme(theme)),
-    //@ts-ignore todo
-    setMainPageCards: () => dispatch(mainReducerActions.setMainPageCards(Object.keys(cardsBase)))
+    setMainPageCards: (arr: Array<CardsBaseKeysType>) => dispatch(mainReducerActions.setMainPageCards(arr)),
+    getArrayOfThemes: () => getArrayOfThemes(dispatch),
+    getArrayOfNavbarIconsUrl: () => getArrayOfNavbarIconsUrl(dispatch)
   }
 }
 
@@ -26,12 +34,15 @@ export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType
 
 export type MapStatePropsType = {
   isNavbarShown: boolean,
-  arrayOfThemes: Array<CardsBaseKeysType>
+  arrayOfThemes: Array<CardsBaseKeysType>,
+  arrayOfNavbarIconsUrl: Array<string>
 }
 
 export type MapDispatchPropsType = {
   hideNavbar: () => void,
   changeNavbarVisibility: (arg: boolean) => void,
   insertTheme: (theme: CardsBaseKeysType) => void,
-  setMainPageCards: () => void
+  setMainPageCards: (arr: Array<CardsBaseKeysType>) => void,
+  getArrayOfThemes: () => void,
+  getArrayOfNavbarIconsUrl: () => void
 }
