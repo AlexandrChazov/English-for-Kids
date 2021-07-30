@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
-import {MapDispatchType, MapStateType} from "./HeaderContainer";
+import {MapDispatchPropsType, MapStatePropsType} from "./HeaderContainer";
 
-const Header: React.FC<MapStateType & MapDispatchType> = (props) => {
+const Header: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
 
   return (
     <div className={styles.header}>
@@ -19,11 +19,11 @@ const Header: React.FC<MapStateType & MapDispatchType> = (props) => {
           Train / Play
         </div>
       </div>
-      <div className={styles.startGameButton}>
+      <div className={`${styles.startGameButton} ${props.canISeeRunGameButton || styles.hide}`}>
         <i
           className={`far fa-caret-square-right ${styles["fa-caret-square-right"]} ${props.isPlayModeOn || styles.hide} ${props.isQuizRunning && styles.hide}`}
           onClick={() => {
-            props.startQuiz()
+            props.setIsQuizRunning(true)
           }}>
         </i>
         <i className={`fas fa-sync-alt ${styles["fa-sync-alt"]} ${props.isQuizRunning || styles.hide}`}></i>

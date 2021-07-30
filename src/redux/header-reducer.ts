@@ -5,16 +5,18 @@ export const headerReducerActions = {
   setPlayModeOff: () => ({type: "header/setPlayModeOff"}) as const,
   // confirmThemeSelection: () => ({type: "header/confirmThemeSelection"}) as const,
   // undoThemeSelection: () => ({type: "header/undoThemeSelection"}) as const,
-  startQuiz: () => ({type: "header/startQuiz"}) as const,
+  setIsQuizRunning: (isQuizRunning: boolean) => ({type: "header/startQuiz", isQuizRunning}) as const,
+  setCanISeeRunGameButton: (canISee: boolean) => ({type: "header/setCanISeeRunGameButton", canISee}) as const,
 }
 
 const initialState = {
   isPlayModeOn: false,
   isThemeSelected: false,
-  isQuizRunning: false
+  isQuizRunning: false,
+  canISeeRunGameButton: false
 }
 
-const headerReducer = (state = initialState, action: ActionsType): InitialStateType => {
+const headerReducer = (state = initialState, action: HeaderReducerActionsType): InitialStateType => {
   switch (action.type) {
     case "header/setPlayModeOn": {
       return {
@@ -44,7 +46,13 @@ const headerReducer = (state = initialState, action: ActionsType): InitialStateT
     case "header/startQuiz": {
       return {
         ...state,
-        isQuizRunning: true
+        isQuizRunning: action.isQuizRunning
+      }
+    }
+    case "header/setCanISeeRunGameButton": {
+      return {
+        ...state,
+        canISeeRunGameButton: action.canISee
       }
     }
   }
@@ -53,5 +61,5 @@ const headerReducer = (state = initialState, action: ActionsType): InitialStateT
 
 export default headerReducer;
 
-type ActionsType = InferActionsTypes<typeof headerReducerActions>;
+export type HeaderReducerActionsType = InferActionsTypes<typeof headerReducerActions>;
 export type InitialStateType = typeof initialState

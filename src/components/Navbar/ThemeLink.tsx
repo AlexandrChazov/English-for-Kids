@@ -10,8 +10,9 @@ const ThemeLink: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) =>
       <Link to="/">
         <button className={s.chooseThemeButton}
                 onClick={(event) => {
-                  props.onButtonClick(event)
-                  props.insertTheme(props.theme)
+                  props.setActiveLink(event);
+                  props.insertTheme(props.theme);
+                  props.setCanISeeRunGameButton(true);
                 }}>
           {props.theme}
         </button>
@@ -27,7 +28,8 @@ type MapStatePropsType = {
 
 type MapDispatchPropsType = {
   insertTheme: (theme: CardsBaseKeysType) => void
-  onButtonClick: (event: React.MouseEvent) => void
+  setActiveLink: (event: React.MouseEvent) => void
+  setCanISeeRunGameButton: (canISee: boolean) => void
 }
 
 export default ThemeLink;

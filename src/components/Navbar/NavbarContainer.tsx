@@ -10,6 +10,7 @@ import {
 import {CardsBaseKeysType} from "../../redux/cardsBase";
 import {MainReducerActionsType, mainReducerActions} from "../../redux/main-reducer";
 import {Dispatch} from "redux";
+import {headerReducerActions, HeaderReducerActionsType} from "../../redux/header-reducer";
 
 const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
@@ -19,14 +20,16 @@ const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   }
 }
 
-const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | NavbarReducerActionsType>) => {
+const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | NavbarReducerActionsType | HeaderReducerActionsType>): MapDispatchPropsType => {
   return {
     hideNavbar: () => dispatch(navbarReducerActions.hideNavbar()),
     changeNavbarVisibility: (arg: boolean) => dispatch(navbarReducerActions.changeNavbarVisibility(arg)),
     insertTheme: (theme: CardsBaseKeysType) => dispatch(mainReducerActions.insertTheme(theme)),
     setMainPageCards: (arr: Array<CardsBaseKeysType>) => dispatch(mainReducerActions.setMainPageCards(arr)),
     getArrayOfThemes: () => getArrayOfThemes(dispatch),
-    getArrayOfNavbarIconsUrl: () => getArrayOfNavbarIconsUrl(dispatch)
+    getArrayOfNavbarIconsUrl: () => getArrayOfNavbarIconsUrl(dispatch),
+    setCanISeeRunGameButton: (canISee: boolean) => dispatch(headerReducerActions.setCanISeeRunGameButton(canISee)),
+    setIsQuizRunning: (isQuizRunning: boolean) => dispatch(headerReducerActions.setIsQuizRunning(isQuizRunning))
   }
 }
 
@@ -44,5 +47,7 @@ export type MapDispatchPropsType = {
   insertTheme: (theme: CardsBaseKeysType) => void,
   setMainPageCards: (arr: Array<CardsBaseKeysType>) => void,
   getArrayOfThemes: () => void,
-  getArrayOfNavbarIconsUrl: () => void
+  getArrayOfNavbarIconsUrl: () => void,
+  setCanISeeRunGameButton: (canISee: boolean) => void,
+  setIsQuizRunning: (isQuizRunning: boolean) => void
 }

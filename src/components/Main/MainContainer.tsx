@@ -1,11 +1,13 @@
-import {MainReducerActionsType, CardInfoType, mainReducerActions} from "../../redux/main-reducer"
+import {MainReducerActionsType, CardInfoType, mainReducerActions} from "../../redux/main-reducer";
+import {HeaderReducerActionsType} from "../../redux/header-reducer";
 import {connect} from "react-redux";
 import Main from "./Main";
 import {AppStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import {CardsBaseKeysType} from "../../redux/cardsBase";
+import {headerReducerActions} from "../../redux/header-reducer";
 
-const MapStateToProps = (state: AppStateType) => {
+const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     cardsInfo: [
       state.mainPage.cardsInfo[0],
@@ -17,17 +19,21 @@ const MapStateToProps = (state: AppStateType) => {
       state.mainPage.cardsInfo[6],
       state.mainPage.cardsInfo[7]
     ],
-    arrayOfThemes: state.navbar.arrayOfThemes
+    arrayOfThemes: state.navbar.arrayOfThemes,
+    isPlayModeOn: state.header.isPlayModeOn
   }
 }
 
-const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType>) => {
+const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | HeaderReducerActionsType>) => {
   return {
     setThemes: (arr: Array<CardsBaseKeysType>) => {
       dispatch(mainReducerActions.setMainPageCards(arr))
     },
     insertTheme: (theme: CardsBaseKeysType) => {
       dispatch(mainReducerActions.insertTheme(theme))
+    },
+    setCanISeeRunGameButton: (canISee: boolean) => {
+      dispatch(headerReducerActions.setCanISeeRunGameButton(canISee))
     }
   }
 }
@@ -37,13 +43,16 @@ export default compose(
 )(Main)
 
 export type MapStatePropsType = {
-  cardsInfo: Array<CardInfoType>,
+  cardsInfo: Array<CardInfoType>
   arrayOfThemes: Array<CardsBaseKeysType>
+  isPlayModeOn: boolean
 }
 
 export type MapDispatchPropsType = {
   setThemes: (arr: Array<CardsBaseKeysType>) => void,
-  insertTheme: (theme: CardsBaseKeysType) => void
+  insertTheme: (theme: CardsBaseKeysType) => void,
+  setCanISeeRunGameButton: (canISee: boolean) => void,
 }
+
 
 type OwnPropsType = {}

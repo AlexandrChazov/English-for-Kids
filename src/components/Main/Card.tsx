@@ -1,8 +1,8 @@
 import React, {useRef} from "react";
-import {CardInfoType} from "../../redux/main-reducer";
 import style from "./Card.module.css";
+import {CardsBaseKeysType} from "../../redux/cardsBase";
 
-const Card: React.FC<CardInfoType> = (props) => {
+const Card: React.FC<CardType> = (props) => {
 
   const cardRef = useRef(document.createElement("div"))
   const audio = new Audio();
@@ -17,15 +17,15 @@ const Card: React.FC<CardInfoType> = (props) => {
           <img className={style.frontCardImage}
                src={process.env.PUBLIC_URL + props.imageUrl}
                alt={props.wordInEnglish || props.gameTheme}/>
-          <h5 className={style.wordInEnglish}>{props.wordInEnglish}</h5>
-          <div className={style.readAWordButton + (props.gameTheme ? style.hide : '')}
+          <h5 className={`${style.wordInEnglish} ${props.isPlayModeOn && style.hide}`}>{props.wordInEnglish}</h5>
+          <div className={style.readAWordButton + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}
                onClick={() => audio.play()}>
-            <i className={"fas fa-volume-up" + (props.gameTheme ? style.hide : '')}></i>
+            <i className={"fas fa-volume-up" + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}></i>
           </div>
-          <div className={style.reverseCardButton + (props.gameTheme ? style.hide : '')}
+          <div className={style.reverseCardButton + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}
             // @ts-ignore todo
                onClick={() => cardRef.current.style.transform = "rotateY(180deg)"}>
-            <i className={"fas fa-reply" + (props.gameTheme ? style.hide : '')}></i>
+            <i className={"fas fa-reply" + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}></i>
           </div>
         </div>
         <div className={style.backCard}>
@@ -42,3 +42,12 @@ const Card: React.FC<CardInfoType> = (props) => {
 }
 
 export default Card;
+
+type CardType = {
+  wordInEnglish: string,
+  wordInRussian: string,
+  imageUrl: string,
+  audioSrc: string,
+  gameTheme?: CardsBaseKeysType,
+  isPlayModeOn: boolean
+};

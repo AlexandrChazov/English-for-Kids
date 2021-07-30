@@ -8,13 +8,14 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
   useEffect(() => {
     props.hideNavbar();
     props.getArrayOfThemes();
-    props.getArrayOfNavbarIconsUrl()
+    props.getArrayOfNavbarIconsUrl();
   }, [])
 
-  function onButtonClick(event: React.MouseEvent) {
+  function setActiveLink(event: React.MouseEvent) {
     const buttons = document.querySelectorAll("button");
     buttons.forEach((el: HTMLButtonElement) => el.classList.remove(s.active));
     event && event.currentTarget.classList.add(s.active);
+    props.setIsQuizRunning(false);
   }
 
   return (
@@ -33,8 +34,9 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
           <Link to="/">
             <button className={s.chooseThemeButton}
                     onClick={(event) => {
-                      onButtonClick(event)
+                      setActiveLink(event)
                       props.setMainPageCards(props.arrayOfThemes);
+                      props.setCanISeeRunGameButton(false);
                     }}>
               Main Page
             </button>
@@ -48,14 +50,16 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
             theme={theme}
             navbarImage={props.arrayOfNavbarIconsUrl[index]}
             insertTheme={props.insertTheme}
-            onButtonClick={onButtonClick}/>
+            setActiveLink={setActiveLink}
+            setCanISeeRunGameButton={props.setCanISeeRunGameButton}/>
         })}
 
         <li className={s.navItem}>
           <Link to="/Statistic">
             <button className={s.chooseThemeButton}
                     onClick={(event) => {
-                      onButtonClick(event)
+                      setActiveLink(event);
+                      props.setCanISeeRunGameButton(false)
                     }}>
               Statistic
             </button>
