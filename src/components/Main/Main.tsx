@@ -13,6 +13,8 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
     props.setCanISeeRunGameButton(false);
   }, [props.arrayOfThemes])
 
+  const audio = new Audio();
+
   return (
     <div className={s.main}>
       <div className={s.cardsWrapper}>
@@ -33,6 +35,7 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
                   wordInRussian={el.wordInRussian}
                   imageUrl={el.imageUrl}
                   audioSrc={el.audioSrc}
+                  audio={audio}
                   isPlayModeOn={props.isPlayModeOn}/>
               </div>
           })}

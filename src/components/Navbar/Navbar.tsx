@@ -12,10 +12,6 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
   }, [])
 
   useEffect(() => {
-    changeActiveLink();
-  },[props.activeLink])
-
-  function changeActiveLink() {
     const buttons = document.querySelectorAll("button");
     buttons.forEach((el: HTMLButtonElement) => {
       el.classList.remove(s.active);
@@ -23,7 +19,7 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
         el.classList.add(s.active)
       }
     });
-  }
+  },[props.activeLink])
 
   return (
     <div className={`${s.navbar} ${props.isNavbarVisible || s.navbarToLeft}`}>

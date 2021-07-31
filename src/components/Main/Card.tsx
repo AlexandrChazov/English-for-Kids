@@ -1,23 +1,10 @@
-import React, {useEffect, useRef} from "react";
+import React, {useRef} from "react";
 import style from "./Card.module.css";
 import {CardsBaseKeysType} from "../../redux/cardsBase";
 
 const Card: React.FC<CardType> = (props) => {
 
   const cardRef = useRef(document.createElement("div"))
-
-  const audio = new Audio();
-  audio.src = process.env.PUBLIC_URL + props.audioSrc;
-  // audio.remove();
-  // audio.srcObject = null;
-  //
-  // useEffect(()=> {
-  //   return () => {
-  //     //@ts-ignore
-  //     audio.remove();
-  //     audio.srcObject = null;
-  //   }
-  // },[])
 
   return (
     <div onMouseLeave={() => cardRef.current.style.transform = ""}>
@@ -30,7 +17,10 @@ const Card: React.FC<CardType> = (props) => {
                alt={props.wordInEnglish || props.gameTheme}/>
           <h5 className={`${style.wordInEnglish} ${props.isPlayModeOn && style.hide}`}>{props.wordInEnglish}</h5>
           <div className={style.readAWordButton + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}
-               onClick={() => audio.play()}>
+               onClick={() => {
+                 props.audio.src = process.env.PUBLIC_URL + props.audioSrc;
+                 props.audio.play()
+               }}>
             <i className={"fas fa-volume-up" + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}></i>
           </div>
           <div className={style.reverseCardButton + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}
@@ -61,4 +51,5 @@ type CardType = {
   audioSrc: string,
   gameTheme?: CardsBaseKeysType,
   isPlayModeOn: boolean
+  audio: HTMLAudioElement
 };
