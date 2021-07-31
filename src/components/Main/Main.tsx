@@ -6,7 +6,11 @@ import Card from "./Card";
 const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
 
   useEffect(() => {
-    props.setThemes(props.arrayOfThemes)
+    props.setMainPageCards(props.arrayOfThemes);
+    if (props.activeLink !== "Statistic" && props.activeLink !== "Main Page") {
+      props.insertTheme(props.activeLink)
+    }
+    props.setCanISeeRunGameButton(false);
   }, [props.arrayOfThemes])
 
   return (
@@ -17,7 +21,10 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
             return el &&
               <div key={index}
                    onClick ={()=>{
-                     el.gameTheme && props.insertTheme(el.gameTheme);
+                     if (el.gameTheme) {
+                       props.insertTheme(el.gameTheme);
+                       props.setActiveLink(el.gameTheme);
+                     }
                      props.setCanISeeRunGameButton(true)
                    }}>
                 <Card

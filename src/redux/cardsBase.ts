@@ -1,6 +1,6 @@
 const cardsBase = {
 
-  "actions":
+  "Actions":
     {
       mainImage: "/images/actions/mainImage.png",
       navbarImage: "/images/actions/navbarImage.png",
@@ -56,7 +56,7 @@ const cardsBase = {
       ]
     },
 
-  "animals":
+  "Animals":
     {
       mainImage: "/images/animals/mainImage.png",
       navbarImage: "/images/animals/navbarImage.png",
@@ -112,7 +112,7 @@ const cardsBase = {
       ]
     },
 
-  "food":
+  "Food":
     {
       mainImage: "/images/food/mainImage.png",
       navbarImage: "/images/food/navbarImage.png",
@@ -168,7 +168,7 @@ const cardsBase = {
       ],
     },
 
-  "months":
+  "Months":
     {
       mainImage: "/images/months/mainImage.png",
       navbarImage: "/images/months/navbarImage.png",
@@ -224,7 +224,7 @@ const cardsBase = {
       ],
     },
 
-  "professions":
+  "Professions":
     {
       mainImage: "/images/professions/mainImage.png",
       navbarImage: "/images/professions/navbarImage.png",
@@ -280,7 +280,7 @@ const cardsBase = {
       ],
     },
 
-  "sea animals":
+  "Sea animals":
     {
       mainImage: "/images/sea_animals/mainImage.png",
       navbarImage: "/images/sea_animals/navbarImage.png",
@@ -336,7 +336,7 @@ const cardsBase = {
       ],
     },
 
-  "transport":
+  "Transport":
     {
       mainImage: "/images/transport/mainImage.png",
       navbarImage: "/images/transport/navbarImage.png",
@@ -392,7 +392,7 @@ const cardsBase = {
       ],
     },
 
-  "other":
+  "Other":
     {
       mainImage: "/images/other/mainImage.png",
       navbarImage: "/images/other/navbarImage.png",
@@ -449,7 +449,6 @@ const cardsBase = {
     },
 };
 
-export type CardsBaseType = typeof cardsBase;
 export type CardsBaseKeysType = keyof typeof cardsBase
 
 export default cardsBase

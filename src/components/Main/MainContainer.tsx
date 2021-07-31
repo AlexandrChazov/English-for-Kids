@@ -6,6 +6,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import {CardsBaseKeysType} from "../../redux/cardsBase";
 import {headerReducerActions} from "../../redux/header-reducer";
+import {NavbarLinksType, navbarReducerActions, NavbarReducerActionsType} from "../../redux/navbar-reducer";
 
 const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
@@ -20,13 +21,14 @@ const MapStateToProps = (state: AppStateType): MapStatePropsType => {
       state.mainPage.cardsInfo[7]
     ],
     arrayOfThemes: state.navbar.arrayOfThemes,
-    isPlayModeOn: state.header.isPlayModeOn
+    isPlayModeOn: state.header.isPlayModeOn,
+    activeLink: state.navbar.activeLink
   }
 }
 
-const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | HeaderReducerActionsType>) => {
+const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | HeaderReducerActionsType | NavbarReducerActionsType>) => {
   return {
-    setThemes: (arr: Array<CardsBaseKeysType>) => {
+    setMainPageCards: (arr: Array<CardsBaseKeysType>) => {
       dispatch(mainReducerActions.setMainPageCards(arr))
     },
     insertTheme: (theme: CardsBaseKeysType) => {
@@ -34,7 +36,8 @@ const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | HeaderRe
     },
     setCanISeeRunGameButton: (canISee: boolean) => {
       dispatch(headerReducerActions.setCanISeeRunGameButton(canISee))
-    }
+    },
+    setActiveLink: (link: NavbarLinksType) => dispatch(navbarReducerActions.setActiveLink(link))
   }
 }
 
@@ -45,13 +48,15 @@ export default compose(
 export type MapStatePropsType = {
   cardsInfo: Array<CardInfoType>
   arrayOfThemes: Array<CardsBaseKeysType>
-  isPlayModeOn: boolean
+  isPlayModeOn: boolean;
+  activeLink: NavbarLinksType
 }
 
 export type MapDispatchPropsType = {
-  setThemes: (arr: Array<CardsBaseKeysType>) => void,
+  setMainPageCards: (arr: Array<CardsBaseKeysType>) => void,
   insertTheme: (theme: CardsBaseKeysType) => void,
   setCanISeeRunGameButton: (canISee: boolean) => void,
+  setActiveLink: (link: NavbarLinksType) => void
 }
 
 

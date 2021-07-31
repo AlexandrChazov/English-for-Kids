@@ -1,12 +1,23 @@
-import React, {useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import style from "./Card.module.css";
 import {CardsBaseKeysType} from "../../redux/cardsBase";
 
 const Card: React.FC<CardType> = (props) => {
 
   const cardRef = useRef(document.createElement("div"))
+
   const audio = new Audio();
   audio.src = process.env.PUBLIC_URL + props.audioSrc;
+  // audio.remove();
+  // audio.srcObject = null;
+  //
+  // useEffect(()=> {
+  //   return () => {
+  //     //@ts-ignore
+  //     audio.remove();
+  //     audio.srcObject = null;
+  //   }
+  // },[])
 
   return (
     <div onMouseLeave={() => cardRef.current.style.transform = ""}>

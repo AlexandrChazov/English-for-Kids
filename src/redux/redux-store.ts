@@ -6,7 +6,7 @@ import headerReducer from "./header-reducer";
 const reducers = combineReducers({
   header: headerReducer,
   mainPage: mainReducer,
-  navbar: navbarReducer
+  navbar: navbarReducer,
 })
 
 const store = createStore(reducers);

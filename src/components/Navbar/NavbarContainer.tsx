@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import Navbar from "./Navbar";
 import {
   getArrayOfNavbarIconsUrl,
-  getArrayOfThemes,
+  getArrayOfThemes, NavbarLinksType,
   navbarReducerActions,
   NavbarReducerActionsType
 } from "../../redux/navbar-reducer";
@@ -14,40 +14,42 @@ import {headerReducerActions, HeaderReducerActionsType} from "../../redux/header
 
 const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
-    isNavbarShown: state.navbar.isNavbarShown,
+    isNavbarVisible: state.navbar.isNavbarVisible,
     arrayOfThemes: state.navbar.arrayOfThemes,
-    arrayOfNavbarIconsUrl: state.navbar.arrayOfNavbarIconsUrl
+    arrayOfNavbarIconsUrl: state.navbar.arrayOfNavbarIconsUrl,
+    activeLink: state.navbar.activeLink
   }
 }
 
 const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | NavbarReducerActionsType | HeaderReducerActionsType>): MapDispatchPropsType => {
   return {
-    hideNavbar: () => dispatch(navbarReducerActions.hideNavbar()),
-    changeNavbarVisibility: (arg: boolean) => dispatch(navbarReducerActions.changeNavbarVisibility(arg)),
+    makeNavbarVisible: (arg: boolean) => dispatch(navbarReducerActions.makeNavbarVisible(arg)),
     insertTheme: (theme: CardsBaseKeysType) => dispatch(mainReducerActions.insertTheme(theme)),
     setMainPageCards: (arr: Array<CardsBaseKeysType>) => dispatch(mainReducerActions.setMainPageCards(arr)),
     getArrayOfThemes: () => getArrayOfThemes(dispatch),
     getArrayOfNavbarIconsUrl: () => getArrayOfNavbarIconsUrl(dispatch),
     setCanISeeRunGameButton: (canISee: boolean) => dispatch(headerReducerActions.setCanISeeRunGameButton(canISee)),
-    setIsQuizRunning: (isQuizRunning: boolean) => dispatch(headerReducerActions.setIsQuizRunning(isQuizRunning))
+    setIsQuizRunning: (isQuizRunning: boolean) => dispatch(headerReducerActions.setIsQuizRunning(isQuizRunning)),
+    setActiveLink: (link: NavbarLinksType) => dispatch(navbarReducerActions.setActiveLink(link)),
   }
 }
 
 export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(MapStateToProps, MapDispatchToProps)(Navbar);
 
 export type MapStatePropsType = {
-  isNavbarShown: boolean,
+  isNavbarVisible: boolean,
   arrayOfThemes: Array<CardsBaseKeysType>,
-  arrayOfNavbarIconsUrl: Array<string>
+  arrayOfNavbarIconsUrl: Array<string>,
+  activeLink: string
 }
 
 export type MapDispatchPropsType = {
-  hideNavbar: () => void,
-  changeNavbarVisibility: (arg: boolean) => void,
+  makeNavbarVisible: (arg: boolean) => void,
   insertTheme: (theme: CardsBaseKeysType) => void,
   setMainPageCards: (arr: Array<CardsBaseKeysType>) => void,
   getArrayOfThemes: () => void,
   getArrayOfNavbarIconsUrl: () => void,
   setCanISeeRunGameButton: (canISee: boolean) => void,
-  setIsQuizRunning: (isQuizRunning: boolean) => void
+  setIsQuizRunning: (isQuizRunning: boolean) => void,
+  setActiveLink: (link: NavbarLinksType) => void,
 }

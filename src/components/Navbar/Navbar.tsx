@@ -6,27 +6,34 @@ import {Link} from "react-router-dom";
 
 const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
   useEffect(() => {
-    props.hideNavbar();
+    props.makeNavbarVisible(false);
     props.getArrayOfThemes();
     props.getArrayOfNavbarIconsUrl();
   }, [])
 
-  function setActiveLink(event: React.MouseEvent) {
+  useEffect(() => {
+    changeActiveLink();
+  },[props.activeLink])
+
+  function changeActiveLink() {
     const buttons = document.querySelectorAll("button");
-    buttons.forEach((el: HTMLButtonElement) => el.classList.remove(s.active));
-    event && event.currentTarget.classList.add(s.active);
-    props.setIsQuizRunning(false);
+    buttons.forEach((el: HTMLButtonElement) => {
+      el.classList.remove(s.active);
+      if (el.innerText === props.activeLink) {
+        el.classList.add(s.active)
+      }
+    });
   }
 
   return (
-    <div className={`${s.navbar} ${props.isNavbarShown || s.navbarToLeft}`}>
-      <div className={`${s.hamburgerMenu} ${props.isNavbarShown && s.hamburgerMenuToRight}`}
+    <div className={`${s.navbar} ${props.isNavbarVisible || s.navbarToLeft}`}>
+      <div className={`${s.hamburgerMenu} ${props.isNavbarVisible && s.hamburgerMenuToRight}`}
            onClick={() => {
-             props.changeNavbarVisibility(!props.isNavbarShown)
+             props.makeNavbarVisible(!props.isNavbarVisible);
            }}>
-        <div className={`${s.line} ${props.isNavbarShown && s.line1}`}></div>
-        <div className={`${s.line} ${props.isNavbarShown && s.line2}`}></div>
-        <div className={`${s.line} ${props.isNavbarShown && s.line3}`}></div>
+        <div className={`${s.line} ${props.isNavbarVisible && s.line1}`}></div>
+        <div className={`${s.line} ${props.isNavbarVisible && s.line2}`}></div>
+        <div className={`${s.line} ${props.isNavbarVisible && s.line3}`}></div>
       </div>
 
       <ul className={s.navList}>
@@ -34,9 +41,11 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
           <Link to="/">
             <button className={s.chooseThemeButton}
                     onClick={(event) => {
-                      setActiveLink(event)
+                      props.setIsQuizRunning(false);
                       props.setMainPageCards(props.arrayOfThemes);
                       props.setCanISeeRunGameButton(false);
+                      props.setActiveLink("Main Page");
+                      props.makeNavbarVisible(false)
                     }}>
               Main Page
             </button>
@@ -50,7 +59,9 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
             theme={theme}
             navbarImage={props.arrayOfNavbarIconsUrl[index]}
             insertTheme={props.insertTheme}
-            setActiveLink={setActiveLink}
+            setIsQuizRunning={props.setIsQuizRunning}
+            setActiveLink={props.setActiveLink}
+            makeNavbarVisible={props.makeNavbarVisible}
             setCanISeeRunGameButton={props.setCanISeeRunGameButton}/>
         })}
 
@@ -58,8 +69,10 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
           <Link to="/Statistic">
             <button className={s.chooseThemeButton}
                     onClick={(event) => {
-                      setActiveLink(event);
-                      props.setCanISeeRunGameButton(false)
+                      props.setIsQuizRunning(false);
+                      props.setCanISeeRunGameButton(false);
+                      props.setActiveLink("Statistic");
+                      props.makeNavbarVisible(false)
                     }}>
               Statistic
             </button>

@@ -7,6 +7,7 @@ import NavbarContainer from "./components/Navbar/NavbarContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Statistic from "./components/Statistic/Statistic";
+import OverlayContainer from "./components/Overlay/OverlayContainer";
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
           <NavbarContainer/>
           <HeaderContainer/>
           <Switch>
-            <Route exact path = "/" component = {MainContainer}/>
-            <Route exact path = "/Statistic" component={Statistic}/>
+            <Route exact path="/" component={MainContainer}/>
+            <Route exact path="/Statistic" component={Statistic}/>
           </Switch>
+          <OverlayContainer/>
         </BrowserRouter>
       </div>
     </Provider>

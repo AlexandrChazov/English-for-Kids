@@ -3,16 +3,17 @@ import cardsBase, {CardsBaseKeysType} from "./cardsBase";
 import {Dispatch} from "redux";
 
 const initialState = {
-  isNavbarShown: false,
+  isNavbarVisible: false,
   arrayOfThemes: [] as Array<CardsBaseKeysType>,
-  arrayOfNavbarIconsUrl: [] as Array<string>
+  arrayOfNavbarIconsUrl: [] as Array<string>,
+  activeLink: "Main Page" as NavbarLinksType
 }
 
 export const navbarReducerActions = {
-  hideNavbar: () => ({type: "navbar/hideNavbar"}) as const,
-  changeNavbarVisibility: (arg: boolean) => ({type: "navbar/changeNavbarVisibility", isNavbarShown: arg}) as const,
+  makeNavbarVisible: (makeNavbarVisible: boolean) => ({type: "navbar/makeNavbarVisibil", makeNavbarVisible}) as const,
   setArrayOfThemes: (arr: Array<CardsBaseKeysType>) => ({type: "navbar/setArrayOfThemes", arr}) as const,
-  setArrayOfNavbarIconsUrl: (arr: Array<string>) => ({type: "navbar/setArrayOfNavbarIconsUrl", arr}) as const
+  setArrayOfNavbarIconsUrl: (arr: Array<string>) => ({type: "navbar/setArrayOfNavbarIconsUrl", arr}) as const,
+  setActiveLink: (link: NavbarLinksType) => ({type: "navbar/setActiveLink", link}) as const,
 }
 
 export const getArrayOfThemes = (dispatch: Dispatch<NavbarReducerActionsType>) => {
@@ -30,16 +31,10 @@ export const getArrayOfNavbarIconsUrl = (dispatch: Dispatch<NavbarReducerActions
 
 const navbarReducer = (state = initialState, action: NavbarReducerActionsType): InitialStateType => {
   switch (action.type) {
-    case "navbar/hideNavbar": {
+    case "navbar/makeNavbarVisibil": {
       return {
         ...state,
-        isNavbarShown: false
-      }
-    }
-    case "navbar/changeNavbarVisibility": {
-      return {
-        ...state,
-        isNavbarShown: action.isNavbarShown
+        isNavbarVisible: action.makeNavbarVisible
       }
     }
     case "navbar/setArrayOfThemes": {
@@ -54,6 +49,12 @@ const navbarReducer = (state = initialState, action: NavbarReducerActionsType): 
         arrayOfNavbarIconsUrl: action.arr
       }
     }
+    case "navbar/setActiveLink": {
+      return {
+        ...state,
+        activeLink: action.link
+      }
+    }
   }
   return state
 }
@@ -61,4 +62,5 @@ const navbarReducer = (state = initialState, action: NavbarReducerActionsType): 
 export default navbarReducer;
 
 export type NavbarReducerActionsType = InferActionsTypes<typeof navbarReducerActions>;
-type InitialStateType = typeof initialState
+type InitialStateType = typeof initialState;
+export type NavbarLinksType = CardsBaseKeysType | "Statistic" | "Main Page"
