@@ -23,12 +23,33 @@ const Header: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
         <i
           className={`far fa-caret-square-right ${styles["fa-caret-square-right"]} ${props.isPlayModeOn || styles.hide} ${props.isQuizRunning && styles.hide}`}
           onClick={() => {
-            props.setIsQuizRunning(true)
+            props.setIsQuizRunning(true);
+            const newArr:Array<string> = [];
+            props.arrayOfAudioQuestionsSrc.map((el)=> {
+              newArr.push(el)
+            })
+            props.setQuestionsListSrc(newArr);
+            const question = newArr.pop();
+            props.setQuestionsListSrc(newArr);
+            question && props.setAudioQuestionSrc(question)
+            const audio = new Audio();
+            audio.src = process.env.PUBLIC_URL + question;
+            setTimeout(()=>audio.play(),500);
           }}>
         </i>
-        <i className={`fas fa-sync-alt ${styles["fa-sync-alt"]} ${props.isQuizRunning || styles.hide}`}></i>
+        <div>
+          <i className={`fas fa-sync-alt ${styles["fa-sync-alt"]} ${props.isQuizRunning || styles.hide}`}></i>
+        </div>
       </div>
-      <div className={styles.emojiPanel}></div>
+      <div className={styles.emojiPanel}>
+        {
+          props.answersList.map((el:boolean, index:number) => {
+            return el
+              ? <i className="far fa-laugh-beam" key={index}></i>
+              : <i className="fas fa-poo" key={index}></i>
+          })
+        }
+      </div>
     </div>
   )
 }

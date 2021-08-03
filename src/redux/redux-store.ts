@@ -2,11 +2,13 @@ import {combineReducers, createStore} from "redux";
 import mainReducer from "./main-reducer";
 import navbarReducer from "./navbar-reducer";
 import headerReducer from "./header-reducer";
+import quizReducer from "./quiz-reducer";
 
 const reducers = combineReducers({
   header: headerReducer,
   mainPage: mainReducer,
   navbar: navbarReducer,
+  quiz: quizReducer,
 })
 
 const store = createStore(reducers);

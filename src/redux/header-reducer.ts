@@ -3,11 +3,13 @@ import {InferActionsTypes} from "./redux-store";
 export const headerReducerActions = {
   setPlayModeOn: () => ({type: "header/setPlayModeOn"}) as const,
   setPlayModeOff: () => ({type: "header/setPlayModeOff"}) as const,
-  // confirmThemeSelection: () => ({type: "header/confirmThemeSelection"}) as const,
-  // undoThemeSelection: () => ({type: "header/undoThemeSelection"}) as const,
   setIsQuizRunning: (isQuizRunning: boolean) => ({type: "header/startQuiz", isQuizRunning}) as const,
   setCanISeeRunGameButton: (canISee: boolean) => ({type: "header/setCanISeeRunGameButton", canISee}) as const,
 }
+
+// const AskAQuestion = () => {
+//   const audioQuestion = new Audio()
+// }
 
 const initialState = {
   isPlayModeOn: false,
@@ -31,18 +33,6 @@ const headerReducer = (state = initialState, action: HeaderReducerActionsType): 
         isQuizRunning: false
       }
     }
-    // case "header/confirmThemeSelection": {
-    //   return {
-    //     ...state,
-    //     isThemeSelected: true
-    //   }
-    // }
-    // case "header/undoThemeSelection": {
-    //   return {
-    //     ...state,
-    //     isThemeSelected: false
-    //   }
-    // }
     case "header/startQuiz": {
       return {
         ...state,

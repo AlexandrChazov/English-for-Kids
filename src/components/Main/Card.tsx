@@ -18,8 +18,8 @@ const Card: React.FC<CardType> = (props) => {
           <h5 className={`${style.wordInEnglish} ${props.isPlayModeOn && style.hide}`}>{props.wordInEnglish}</h5>
           <div className={style.readAWordButton + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}
                onClick={() => {
-                 props.audio.src = process.env.PUBLIC_URL + props.audioSrc;
-                 props.audio.play()
+                 props.audioQuestion.src = process.env.PUBLIC_URL + props.audioSrc;
+                 props.audioQuestion.play()
                }}>
             <i className={"fas fa-volume-up" + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}></i>
           </div>
@@ -51,5 +51,5 @@ type CardType = {
   audioSrc: string,
   gameTheme?: CardsBaseKeysType,
   isPlayModeOn: boolean
-  audio: HTMLAudioElement
+  audioQuestion: HTMLAudioElement
 };

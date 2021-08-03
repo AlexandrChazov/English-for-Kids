@@ -13,7 +13,8 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
     props.setCanISeeRunGameButton(false);
   }, [props.arrayOfThemes])
 
-  const audio = new Audio();
+  const audioQuestion = new Audio();
+  const audioEffect = new Audio();
 
   return (
     <div className={s.main}>
@@ -27,7 +28,29 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
                        props.insertTheme(el.gameTheme);
                        props.setActiveLink(el.gameTheme);
                      }
-                     props.setCanISeeRunGameButton(true)
+                     props.setCanISeeRunGameButton(true);
+                     if (props.isQuizRunning) {
+                        if (el.audioSrc === props.audioQuestionSrc) {
+                          audioEffect.src = process.env.PUBLIC_URL + '/audio/correctAnswer.mp3';
+                          audioEffect.play();
+                          props.setAnswersList(true);
+                          const newArr:Array<string> = [];
+                          props.questionsListSrc.map((el)=> {
+                            newArr.push(el)
+                          });
+                          props.setQuestionsListSrc(newArr);
+                          const question = newArr.pop();
+                          question && props.setAudioQuestionSrc(question)
+                          setTimeout(()=> {
+                            audioQuestion.src = process.env.PUBLIC_URL + question;
+                            audioQuestion.play()
+                          },1000);
+                        } else {
+                          audioEffect.src = process.env.PUBLIC_URL + '/audio/incorrectAnswer.mp3';
+                          audioEffect.play();
+                          props.setAnswersList(false)
+                        }
+                     }
                    }}>
                 <Card
                   gameTheme={el.gameTheme}
@@ -35,7 +58,7 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
                   wordInRussian={el.wordInRussian}
                   imageUrl={el.imageUrl}
                   audioSrc={el.audioSrc}
-                  audio={audio}
+                  audioQuestion={audioQuestion}
                   isPlayModeOn={props.isPlayModeOn}/>
               </div>
           })}

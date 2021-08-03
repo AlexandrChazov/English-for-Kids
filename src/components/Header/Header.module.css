@@ -77,8 +77,8 @@ h1 {
     height: 4.5rem;
     width: 50rem;
     overflow: hidden;
-    transform: rotateY(180deg);
-    display: flex
+    display: flex;
+    flex-direction: row;
 }
 
 .hide {

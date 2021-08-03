@@ -11,11 +11,12 @@ const cardInfo: CardInfoType = {
 
 export const mainReducerActions = {
   setMainPageCards: (arr: Array<CardsBaseKeysType>) => ({type: "main/setMainPageCards", arrayOfThemes: arr}) as const,
-  insertTheme: (theme: CardsBaseKeysType) => ({type: "main/insertTheme", theme}) as const,
+  insertTheme: (theme: CardsBaseKeysType) => ({type: "main/insertTheme", cardsInfo: cardsBase[theme].cards}) as const,
 }
 
 const initialState = {
   cardsInfo: [cardInfo],
+  arrayOfAudioQuestionsSrc: [] as Array<string>,
 }
 
 const mainReducer = (state:InitialStateType = initialState, action: MainReducerActionsType): InitialStateType => {
@@ -37,7 +38,8 @@ const mainReducer = (state:InitialStateType = initialState, action: MainReducerA
     case "main/insertTheme": {
       return {
         ...state,
-        cardsInfo: shuffle(cardsBase[action.theme].cards)
+        cardsInfo: shuffle(action.cardsInfo),
+        arrayOfAudioQuestionsSrc: shuffle(action.cardsInfo.map((el)=>el.audioSrc))
       }
     }
   }

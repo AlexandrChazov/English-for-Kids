@@ -7,6 +7,7 @@ import {compose, Dispatch} from "redux";
 import {CardsBaseKeysType} from "../../redux/cardsBase";
 import {headerReducerActions} from "../../redux/header-reducer";
 import {NavbarLinksType, navbarReducerActions, NavbarReducerActionsType} from "../../redux/navbar-reducer";
+import {quizReducerActions, QuizReducerActionsType} from "../../redux/quiz-reducer";
 
 const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
@@ -22,11 +23,14 @@ const MapStateToProps = (state: AppStateType): MapStatePropsType => {
     ],
     arrayOfThemes: state.navbar.arrayOfThemes,
     isPlayModeOn: state.header.isPlayModeOn,
-    activeLink: state.navbar.activeLink
+    isQuizRunning: state.header.isQuizRunning,
+    activeLink: state.navbar.activeLink,
+    audioQuestionSrc: state.quiz.audioQuestionSrc,
+    questionsListSrc: state.quiz.questionsListSrc
   }
 }
 
-const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | HeaderReducerActionsType | NavbarReducerActionsType>) => {
+const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | HeaderReducerActionsType | NavbarReducerActionsType | QuizReducerActionsType>) => {
   return {
     setMainPageCards: (arr: Array<CardsBaseKeysType>) => {
       dispatch(mainReducerActions.setMainPageCards(arr))
@@ -37,7 +41,10 @@ const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | HeaderRe
     setCanISeeRunGameButton: (canISee: boolean) => {
       dispatch(headerReducerActions.setCanISeeRunGameButton(canISee))
     },
-    setActiveLink: (link: NavbarLinksType) => dispatch(navbarReducerActions.setActiveLink(link))
+    setActiveLink: (link: NavbarLinksType) => dispatch(navbarReducerActions.setActiveLink(link)),
+    setAnswersList: (isAnswerCorrect: boolean) => dispatch(quizReducerActions.setAnswersList(isAnswerCorrect)),
+    setQuestionsListSrc: (questionsListSrc: Array<string>) => dispatch(quizReducerActions.setQuestionsListSrc(questionsListSrc)),
+    setAudioQuestionSrc: (audioSrc:string) => dispatch(quizReducerActions.setAudioQuestionSrc(audioSrc))
   }
 }
 
@@ -48,15 +55,21 @@ export default compose(
 export type MapStatePropsType = {
   cardsInfo: Array<CardInfoType>
   arrayOfThemes: Array<CardsBaseKeysType>
-  isPlayModeOn: boolean;
+  isPlayModeOn: boolean
   activeLink: NavbarLinksType
+  audioQuestionSrc: string
+  isQuizRunning: boolean
+  questionsListSrc: Array<string>
 }
 
 export type MapDispatchPropsType = {
-  setMainPageCards: (arr: Array<CardsBaseKeysType>) => void,
-  insertTheme: (theme: CardsBaseKeysType) => void,
-  setCanISeeRunGameButton: (canISee: boolean) => void,
+  setMainPageCards: (arr: Array<CardsBaseKeysType>) => void
+  insertTheme: (theme: CardsBaseKeysType) => void
+  setCanISeeRunGameButton: (canISee: boolean) => void
   setActiveLink: (link: NavbarLinksType) => void
+  setAnswersList: (isAnswerCorrect: boolean) => void
+  setQuestionsListSrc: (questionsListSrc: Array<string>) => void
+  setAudioQuestionSrc: (audioSrc:string) => void
 }
 
 
