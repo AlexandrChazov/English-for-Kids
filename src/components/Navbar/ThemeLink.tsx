@@ -15,7 +15,7 @@ const ThemeLink: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) =>
                   props.insertTheme(props.theme);
                   props.setActiveLink(props.theme);
                   props.setCanISeeRunGameButton(true);
-                  props.makeNavbarVisible(false)
+                  props.setIsNavbarVisible(false)
                 }}>
           {props.theme}
         </button>
@@ -34,7 +34,7 @@ type MapDispatchPropsType = {
   setActiveLink: (link: NavbarLinksType) => void
   setCanISeeRunGameButton: (canISee: boolean) => void
   setIsQuizRunning: (isQuizRunning: boolean) => void
-  makeNavbarVisible: (arg: boolean) => void
+  setIsNavbarVisible: (arg: boolean) => void
 }
 
 export default ThemeLink;

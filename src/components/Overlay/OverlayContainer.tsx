@@ -12,7 +12,7 @@ const MapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 const MapDispatchToProps = (dispatch: Dispatch<NavbarReducerActionsType>): MapDispatchPropsType => {
   return {
-    makeNavbarVisibile: (arg: boolean) => dispatch(navbarReducerActions.makeNavbarVisible(arg))
+    setIsNavbarVisible: (arg: boolean) => dispatch(navbarReducerActions.setIsNavbarVisible(arg))
   }
 }
 
@@ -23,5 +23,5 @@ export type MapStatePropsType = {
 }
 
 export type MapDispatchPropsType = {
-  makeNavbarVisibile: (arg: boolean) => void
+  setIsNavbarVisible: (arg: boolean) => void
 }

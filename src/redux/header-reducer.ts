@@ -3,13 +3,9 @@ import {InferActionsTypes} from "./redux-store";
 export const headerReducerActions = {
   setPlayModeOn: () => ({type: "header/setPlayModeOn"}) as const,
   setPlayModeOff: () => ({type: "header/setPlayModeOff"}) as const,
-  setIsQuizRunning: (isQuizRunning: boolean) => ({type: "header/startQuiz", isQuizRunning}) as const,
+  setIsQuizRunning: (isQuizRunning: boolean) => ({type: "header/setIsQuizRunning", isQuizRunning}) as const,
   setCanISeeRunGameButton: (canISee: boolean) => ({type: "header/setCanISeeRunGameButton", canISee}) as const,
 }
-
-// const AskAQuestion = () => {
-//   const audioQuestion = new Audio()
-// }
 
 const initialState = {
   isPlayModeOn: false,
@@ -33,7 +29,7 @@ const headerReducer = (state = initialState, action: HeaderReducerActionsType): 
         isQuizRunning: false
       }
     }
-    case "header/startQuiz": {
+    case "header/setIsQuizRunning": {
       return {
         ...state,
         isQuizRunning: action.isQuizRunning

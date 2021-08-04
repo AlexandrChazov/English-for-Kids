@@ -23,7 +23,7 @@ const MapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | NavbarReducerActionsType | HeaderReducerActionsType>): MapDispatchPropsType => {
   return {
-    makeNavbarVisible: (arg: boolean) => dispatch(navbarReducerActions.makeNavbarVisible(arg)),
+    setIsNavbarVisible: (arg: boolean) => dispatch(navbarReducerActions.setIsNavbarVisible(arg)),
     insertTheme: (theme: CardsBaseKeysType) => dispatch(mainReducerActions.insertTheme(theme)),
     setMainPageCards: (arr: Array<CardsBaseKeysType>) => dispatch(mainReducerActions.setMainPageCards(arr)),
     getArrayOfThemes: () => getArrayOfThemes(dispatch),
@@ -44,7 +44,7 @@ export type MapStatePropsType = {
 }
 
 export type MapDispatchPropsType = {
-  makeNavbarVisible: (arg: boolean) => void,
+  setIsNavbarVisible: (arg: boolean) => void,
   insertTheme: (theme: CardsBaseKeysType) => void,
   setMainPageCards: (arr: Array<CardsBaseKeysType>) => void,
   getArrayOfThemes: () => void,

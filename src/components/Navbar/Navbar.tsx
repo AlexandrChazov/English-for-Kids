@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
   useEffect(() => {
-    props.makeNavbarVisible(false);
+    props.setIsNavbarVisible(false);
     props.getArrayOfThemes();
     props.getArrayOfNavbarIconsUrl();
   }, [])
@@ -25,7 +25,7 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
     <div className={`${s.navbar} ${props.isNavbarVisible || s.navbarToLeft}`}>
       <div className={`${s.hamburgerMenu} ${props.isNavbarVisible && s.hamburgerMenuToRight}`}
            onClick={() => {
-             props.makeNavbarVisible(!props.isNavbarVisible);
+             props.setIsNavbarVisible(!props.isNavbarVisible);
            }}>
         <div className={`${s.line} ${props.isNavbarVisible && s.line1}`}></div>
         <div className={`${s.line} ${props.isNavbarVisible && s.line2}`}></div>
@@ -41,7 +41,7 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
                       props.setMainPageCards(props.arrayOfThemes);
                       props.setCanISeeRunGameButton(false);
                       props.setActiveLink("Main Page");
-                      props.makeNavbarVisible(false)
+                      props.setIsNavbarVisible(false)
                     }}>
               Main Page
             </button>
@@ -57,7 +57,7 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
             insertTheme={props.insertTheme}
             setIsQuizRunning={props.setIsQuizRunning}
             setActiveLink={props.setActiveLink}
-            makeNavbarVisible={props.makeNavbarVisible}
+            setIsNavbarVisible={props.setIsNavbarVisible}
             setCanISeeRunGameButton={props.setCanISeeRunGameButton}/>
         })}
 
@@ -68,7 +68,7 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
                       props.setIsQuizRunning(false);
                       props.setCanISeeRunGameButton(false);
                       props.setActiveLink("Statistic");
-                      props.makeNavbarVisible(false)
+                      props.setIsNavbarVisible(false)
                     }}>
               Statistic
             </button>

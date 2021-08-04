@@ -10,7 +10,7 @@ const initialState = {
 }
 
 export const navbarReducerActions = {
-  makeNavbarVisible: (makeNavbarVisible: boolean) => ({type: "navbar/makeNavbarVisibil", makeNavbarVisible}) as const,
+  setIsNavbarVisible: (setIsNavbarVisible: boolean) => ({type: "navbar/makeNavbarVisibil", setIsNavbarVisible}) as const,
   setArrayOfThemes: (arr: Array<CardsBaseKeysType>) => ({type: "navbar/setArrayOfThemes", arr}) as const,
   setArrayOfNavbarIconsUrl: (arr: Array<string>) => ({type: "navbar/setArrayOfNavbarIconsUrl", arr}) as const,
   setActiveLink: (link: NavbarLinksType) => ({type: "navbar/setActiveLink", link}) as const,
@@ -34,7 +34,7 @@ const navbarReducer = (state = initialState, action: NavbarReducerActionsType): 
     case "navbar/makeNavbarVisibil": {
       return {
         ...state,
-        isNavbarVisible: action.makeNavbarVisible
+        isNavbarVisible: action.setIsNavbarVisible
       }
     }
     case "navbar/setArrayOfThemes": {

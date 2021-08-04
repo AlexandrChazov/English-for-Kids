@@ -1,5 +1,5 @@
 import React, {useRef} from "react";
-import style from "./Card.module.css";
+import styles from "./Card.module.css";
 import {CardsBaseKeysType} from "../../redux/cardsBase";
 
 const Card: React.FC<CardType> = (props) => {
@@ -8,48 +8,46 @@ const Card: React.FC<CardType> = (props) => {
 
   return (
     <div onMouseLeave={() => cardRef.current.style.transform = ""}>
-      <div className={style.flipEffect}
+      <div className={styles.flipEffect}
            ref={cardRef}>
-        <div className={style.frontCard}>
-          <h3 className={style.frontCardTheme}>{props.gameTheme}</h3>
-          <img className={style.frontCardImage}
+        <div className={styles.frontCard}>
+          <h3 className={styles.frontCardTheme}>{props.gameTheme}</h3>
+          <img className={styles.frontCardImage}
                src={process.env.PUBLIC_URL + props.imageUrl}
                alt={props.wordInEnglish || props.gameTheme}/>
-          <h5 className={`${style.wordInEnglish} ${props.isPlayModeOn && style.hide}`}>{props.wordInEnglish}</h5>
-          <div className={style.readAWordButton + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}
+          <h5 className={`${styles.wordInEnglish} ${props.isPlayModeOn && styles.hide}`}>{props.wordInEnglish}</h5>
+          <div className={`${styles.readAWordButton} ${props.gameTheme || props.isPlayModeOn ? styles.hide : ''}`}
                onClick={() => {
                  props.audioQuestion.src = process.env.PUBLIC_URL + props.audioSrc;
                  props.audioQuestion.play()
                }}>
-            <i className={"fas fa-volume-up" + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}></i>
+            <i className="fas fa-volume-up"></i>
           </div>
-          <div className={style.reverseCardButton + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}
-            // @ts-ignore todo
+          <div className={`${styles.reverseCardButton} ${props.gameTheme || props.isPlayModeOn ? styles.hide : ''}`}
                onClick={() => cardRef.current.style.transform = "rotateY(180deg)"}>
-            <i className={"fas fa-reply" + (props.gameTheme || props.isPlayModeOn ? style.hide : '')}></i>
+            <i className="fas fa-reply"></i>
           </div>
         </div>
-        <div className={style.backCard}>
-          <img className={style.backCardImage}
+        <div className={styles.backCard}>
+          <img className={styles.backCardImage}
                src={process.env.PUBLIC_URL + props.imageUrl}
                alt={props.wordInEnglish}/>
-          <h5 className={style.wordInRussian}>{props.wordInRussian}</h5>
+          <h5 className={styles.wordInRussian}>{props.wordInRussian}</h5>
         </div>
-        <div className={style.cardOverlay + style.hide}></div>
+        <div className={`${styles.cardOverlay} + ${styles.hide}`}></div>
       </div>
     </div>
-
   )
 }
 
 export default Card;
 
 type CardType = {
-  wordInEnglish: string,
-  wordInRussian: string,
-  imageUrl: string,
-  audioSrc: string,
-  gameTheme?: CardsBaseKeysType,
+  wordInEnglish: string
+  wordInRussian: string
+  imageUrl: string
+  audioSrc: string
+  gameTheme?: CardsBaseKeysType
   isPlayModeOn: boolean
   audioQuestion: HTMLAudioElement
 };

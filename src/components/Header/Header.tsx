@@ -1,7 +1,14 @@
 import styles from "./Header.module.css";
 import {MapDispatchPropsType, MapStatePropsType} from "./HeaderContainer";
+import {useEffect} from "react";
 
 const Header: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
+
+  useEffect(() => {
+    props.cleanAnswersList()
+  }, [props.isQuizRunning])
+
+  const audio = new Audio();
 
   return (
     <div className={styles.header}>
@@ -25,19 +32,21 @@ const Header: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
           onClick={() => {
             props.setIsQuizRunning(true);
             const newArr:Array<string> = [];
-            props.arrayOfAudioQuestionsSrc.map((el)=> {
+            props.arrayOfAudioQuestionsSrc.forEach((el)=> {
               newArr.push(el)
             })
             props.setQuestionsListSrc(newArr);
             const question = newArr.pop();
             props.setQuestionsListSrc(newArr);
             question && props.setAudioQuestionSrc(question)
-            const audio = new Audio();
             audio.src = process.env.PUBLIC_URL + question;
             setTimeout(()=>audio.play(),500);
           }}>
         </i>
-        <div>
+        <div onClick={() => {
+          audio.src = process.env.PUBLIC_URL + props.audioQuestionSrc;
+          setTimeout(()=>audio.play(),500);
+        }}>
           <i className={`fas fa-sync-alt ${styles["fa-sync-alt"]} ${props.isQuizRunning || styles.hide}`}></i>
         </div>
       </div>

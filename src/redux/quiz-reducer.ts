@@ -9,7 +9,8 @@ const initialState = {
 export const quizReducerActions = {
   setAudioQuestionSrc: (audioSrc:string) => ({type: "quiz/setAudioQuestionSrc", audioSrc}) as const,
   setQuestionsListSrc: (questionsListSrc: Array<string>) => ({type: "quiz/setQuestionsList", questionsListSrc}) as const,
-  setAnswersList: (isAnswerCorrect: boolean) => ({type: "quiz/setAnswersList", isAnswerCorrect}) as const,
+  addUserAnswer: (isAnswerCorrect: boolean) => ({type: "quiz/addUserAnswer", isAnswerCorrect}) as const,
+  cleanAnswersList: () => ({type: "quiz/cleanAnswersList"}) as const,
 }
 
 const quizReducer = (state:InitialStateType = initialState, action: QuizReducerActionsType): InitialStateType => {
@@ -26,10 +27,16 @@ const quizReducer = (state:InitialStateType = initialState, action: QuizReducerA
         questionsListSrc: action.questionsListSrc
       }
     }
-    case "quiz/setAnswersList": {
+    case "quiz/addUserAnswer": {
       return {
         ...state,
         answersList: [...state.answersList, action.isAnswerCorrect]
+      }
+    }
+    case "quiz/cleanAnswersList": {
+      return {
+        ...state,
+        answersList: []
       }
     }
   }

@@ -23,7 +23,8 @@ const MapDispatchToProps = (dispatch: Dispatch<HeaderReducerActionsType | QuizRe
     setPlayModeOff: () => dispatch(headerReducerActions.setPlayModeOff()),
     setIsQuizRunning: (isQuizRunning: boolean) => dispatch(headerReducerActions.setIsQuizRunning(isQuizRunning)),
     setQuestionsListSrc: (questionsListSrc: Array<string>) => dispatch(quizReducerActions.setQuestionsListSrc(questionsListSrc)),
-    setAudioQuestionSrc: (audioSrc:string) => dispatch(quizReducerActions.setAudioQuestionSrc(audioSrc))
+    setAudioQuestionSrc: (audioSrc:string) => dispatch(quizReducerActions.setAudioQuestionSrc(audioSrc)),
+    cleanAnswersList: () => dispatch(quizReducerActions.cleanAnswersList()),
   }
 }
 
@@ -40,9 +41,10 @@ export type MapStatePropsType = {
 }
 
 export type MapDispatchPropsType = {
-  setPlayModeOn: () => void,
-  setPlayModeOff: () => void,
-  setIsQuizRunning: (isQuizRunning: boolean) => void,
-  setQuestionsListSrc: (questionsListSrc: Array<string>) => void,
+  setPlayModeOn: () => void
+  setPlayModeOff: () => void
+  setIsQuizRunning: (isQuizRunning: boolean) => void
+  setQuestionsListSrc: (questionsListSrc: Array<string>) => void
   setAudioQuestionSrc: (audioSrc:string) => void
+  cleanAnswersList: () => void
 }
