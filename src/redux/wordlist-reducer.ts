@@ -14,7 +14,7 @@ export const statisticReducerActions = {
   setWords: (wordsArray: Array<Array<WordsArrayType>>) => ({type: "statistic/setWords", wordsArray}) as const,
 }
 
-const statisticReducer = (state = initialState, action: StatisticReducerActionsType) => {
+const wordlistReducer = (state = initialState, action: StatisticReducerActionsType) => {
   switch (action.type) {
     case "statistic/setIsStatisticPageVisible": {
       return {
@@ -32,7 +32,7 @@ const statisticReducer = (state = initialState, action: StatisticReducerActionsT
   return state
 }
 
-export default statisticReducer;
+export default wordlistReducer;
 
 export type StatisticReducerActionsType = InferActionsTypes<typeof statisticReducerActions>
 

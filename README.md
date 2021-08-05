@@ -1,1 +1,1 @@
-### This project is published at [gh-pages](https://fireyourguns.github.io/English-for-Kids/).
+### This project is published at https://fireyourguns.github.io/English-for-Kids/

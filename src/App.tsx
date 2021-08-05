@@ -6,7 +6,7 @@ import store from "./redux/redux-store";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import OverlayContainer from "./components/Overlay/OverlayContainer";
-import StatisticContainer from "./components/Statistic/StatisticContainer";
+import WordlistContainer from "./components/Wordlist/WordlistContainer";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <NavbarContainer/>
         <HeaderContainer/>
         <MainContainer/>
-        <StatisticContainer/>
+        <WordlistContainer/>
         <OverlayContainer/>
       </div>
     </Provider>

@@ -11,7 +11,7 @@ import {CardsBaseKeysType} from "../../redux/cardsBase";
 import {MainReducerActionsType, mainReducerActions} from "../../redux/main-reducer";
 import {Dispatch} from "redux";
 import {headerReducerActions, HeaderReducerActionsType} from "../../redux/header-reducer";
-import {statisticReducerActions, StatisticReducerActionsType} from "../../redux/statistic-reducer";
+import {statisticReducerActions, StatisticReducerActionsType} from "../../redux/wordlist-reducer";
 
 const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {

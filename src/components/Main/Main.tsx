@@ -72,7 +72,7 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
                                mistakesWrapper.current.classList.remove(styles.hide);
                                setTimeout(() => {
                                  window.location.reload();
-                               }, 3000);
+                               }, 4000);
                              } else {
                                audioEffect.src = process.env.PUBLIC_URL + `/audio/victory.mp3`;
                                cardsGrid.current.classList.add(styles.hide);
@@ -86,7 +86,7 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
                          }
                        } else {
                          setMistakesQuantity(mistakesQuantity + 1)
-                         audioEffect.src = process.env.PUBLIC_URL + '/audio/incorrectAnswer.mp3';
+                         audioEffect.src = process.env.PUBLIC_URL + '/audio/inCorrectAnswer.mp3';
                          audioEffect.play();
                          props.addUserAnswer(false)
                        }

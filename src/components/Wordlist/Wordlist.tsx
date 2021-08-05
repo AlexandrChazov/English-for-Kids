@@ -1,9 +1,9 @@
-import styles from "./Statistic.module.css"
-import {MapDispatchPropsType, MapStatePropsType} from "./StatisticContainer";
-import {WordsArrayType} from "../../redux/statistic-reducer";
+import styles from "./Wordlist.module.css"
+import {MapDispatchPropsType, MapStatePropsType} from "./WordlistContainer";
+import {WordsArrayType} from "../../redux/wordlist-reducer";
 import {useEffect} from "react";
 
-const Statistic: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
+const Wordlist: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
 
   useEffect(() => {
     props.setWords(props.wordsArray)
@@ -35,4 +35,4 @@ const Statistic: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) =>
   )
 }
 
-export default Statistic;
+export default Wordlist;
