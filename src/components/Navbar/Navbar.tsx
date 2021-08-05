@@ -1,12 +1,24 @@
 import React, {useEffect} from "react";
 import s from "./Navbar.module.css";
 import {MapDispatchPropsType, MapStatePropsType} from "./NavbarContainer";
-import ThemeLink from "./ThemeLink";
-import {Link} from "react-router-dom";
+import {NavbarLinksType} from "../../redux/navbar-reducer";
 
 const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
-  useEffect(() => {
+
+  function changeParameters(canISeeRunGameButton: boolean,
+                            activeLink: NavbarLinksType,
+                            isMainPageVisible: boolean,
+                            isStatisticPageVisible: boolean) {
+    props.setIsQuizRunning(false);
     props.setIsNavbarVisible(false);
+
+    props.setCanISeeRunGameButton(canISeeRunGameButton);
+    props.setActiveLink(activeLink);
+    props.setIsMainPageVisible(isMainPageVisible);
+    props.setIsStatisticPageVisible(isStatisticPageVisible);
+  }
+
+  useEffect(() => {
     props.getArrayOfThemes();
     props.getArrayOfNavbarIconsUrl();
   }, [])
@@ -19,7 +31,7 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
         el.classList.add(s.active)
       }
     });
-  },[props.activeLink])
+  }, [props.activeLink])
 
   return (
     <div className={`${s.navbar} ${props.isNavbarVisible || s.navbarToLeft}`}>
@@ -33,47 +45,40 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
       </div>
 
       <ul className={s.navList}>
-        <li className={s.navItem}>
-          <Link to="/">
-            <button className={s.chooseThemeButton}
-                    onClick={(event) => {
-                      props.setIsQuizRunning(false);
-                      props.setMainPageCards(props.arrayOfThemes);
-                      props.setCanISeeRunGameButton(false);
-                      props.setActiveLink("Main Page");
-                      props.setIsNavbarVisible(false)
-                    }}>
-              Main Page
-            </button>
-          </Link>
-
+        <li className={s.navItem} key={"navbar0"}>
+          <button className={s.chooseThemeButton}
+                  onClick={() => {
+                    changeParameters(false, "Main Page", true, false);
+                    props.setMainPageCards(props.arrayOfThemes);
+                  }}>
+            Main Page
+          </button>
         </li>
 
         {props.arrayOfThemes.map((theme, index) => {
-          return <ThemeLink
-            key={index}
-            theme={theme}
-            navbarImage={props.arrayOfNavbarIconsUrl[index]}
-            insertTheme={props.insertTheme}
-            setIsQuizRunning={props.setIsQuizRunning}
-            setActiveLink={props.setActiveLink}
-            setIsNavbarVisible={props.setIsNavbarVisible}
-            setCanISeeRunGameButton={props.setCanISeeRunGameButton}/>
+          return (
+            <li className={s.navItem} key={index}>
+              <img className={s.navIcon} src={process.env.PUBLIC_URL + props.arrayOfNavbarIconsUrl[index]} alt={theme}/>
+              <button className={s.chooseThemeButton}
+                      onClick={() => {
+                        changeParameters(true, theme, true, false)
+                        props.insertTheme(theme);
+                      }}>
+                {theme}
+              </button>
+            </li>
+          )
         })}
 
-        <li className={s.navItem}>
-          <Link to="/Statistic">
-            <button className={s.chooseThemeButton}
-                    onClick={(event) => {
-                      props.setIsQuizRunning(false);
-                      props.setCanISeeRunGameButton(false);
-                      props.setActiveLink("Statistic");
-                      props.setIsNavbarVisible(false)
-                    }}>
-              Statistic
-            </button>
-          </Link>
+        <li className={s.navItem}  key={"navbar1"}>
+          <button className={s.chooseThemeButton}
+                  onClick={() => {
+                    changeParameters(false, "Wordlist", false, true)
+                  }}>
+            Wordlist
+          </button>
         </li>
+
       </ul>
     </div>
   )

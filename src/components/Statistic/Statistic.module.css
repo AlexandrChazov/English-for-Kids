@@ -8,3 +8,7 @@
 .colName {
     padding: 0 1rem;
 }
+
+.hide {
+    display: none;
+}

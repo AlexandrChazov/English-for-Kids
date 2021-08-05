@@ -12,11 +12,13 @@ const cardInfo: CardInfoType = {
 export const mainReducerActions = {
   setMainPageCards: (arr: Array<CardsBaseKeysType>) => ({type: "main/setMainPageCards", arrayOfThemes: arr}) as const,
   insertTheme: (theme: CardsBaseKeysType) => ({type: "main/insertTheme", cardsInfo: cardsBase[theme].cards}) as const,
+  setIsMainPageVisible: (isVisible: boolean) => ({type: "main/setIsMainPageVisible", isVisible}) as const,
 }
 
 const initialState = {
   cardsInfo: [cardInfo],
   arrayOfAudioQuestionsSrc: [] as Array<string>,
+  isMainPageVisible: true,
 }
 
 const mainReducer = (state:InitialStateType = initialState, action: MainReducerActionsType): InitialStateType => {
@@ -40,6 +42,12 @@ const mainReducer = (state:InitialStateType = initialState, action: MainReducerA
         ...state,
         cardsInfo: shuffle(action.cardsInfo),
         arrayOfAudioQuestionsSrc: shuffle(action.cardsInfo.map((el)=>el.audioSrc))
+      }
+    }
+    case "main/setIsMainPageVisible": {
+      return {
+        ...state,
+        isMainPageVisible: action.isVisible
       }
     }
   }

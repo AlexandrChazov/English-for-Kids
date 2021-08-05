@@ -5,9 +5,9 @@ import {Provider} from "react-redux";
 import store from "./redux/redux-store";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import Statistic from "./components/Statistic/Statistic";
+import {BrowserRouter} from "react-router-dom";
 import OverlayContainer from "./components/Overlay/OverlayContainer";
+import StatisticContainer from "./components/Statistic/StatisticContainer";
 
 function App() {
   return (
@@ -16,10 +16,8 @@ function App() {
         <BrowserRouter>
           <NavbarContainer/>
           <HeaderContainer/>
-          <Switch>
-            <Route exact path="/" component={MainContainer}/>
-            <Route exact path="/Statistic" component={Statistic}/>
-          </Switch>
+          <MainContainer/>
+          <StatisticContainer/>
           <OverlayContainer/>
         </BrowserRouter>
       </div>

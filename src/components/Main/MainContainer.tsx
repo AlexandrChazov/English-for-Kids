@@ -12,21 +12,23 @@ import {quizReducerActions, QuizReducerActionsType} from "../../redux/quiz-reduc
 const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     cardsInfo: [
-      state.mainPage.cardsInfo[0],
-      state.mainPage.cardsInfo[1],
-      state.mainPage.cardsInfo[2],
-      state.mainPage.cardsInfo[3],
-      state.mainPage.cardsInfo[4],
-      state.mainPage.cardsInfo[5],
-      state.mainPage.cardsInfo[6],
-      state.mainPage.cardsInfo[7]
+      state.main.cardsInfo[0],
+      state.main.cardsInfo[1],
+      state.main.cardsInfo[2],
+      state.main.cardsInfo[3],
+      state.main.cardsInfo[4],
+      state.main.cardsInfo[5],
+      state.main.cardsInfo[6],
+      state.main.cardsInfo[7]
     ],
     arrayOfThemes: state.navbar.arrayOfThemes,
     isPlayModeOn: state.header.isPlayModeOn,
     isQuizRunning: state.header.isQuizRunning,
     activeLink: state.navbar.activeLink,
     audioQuestionSrc: state.quiz.audioQuestionSrc,
-    questionsListSrc: state.quiz.questionsListSrc
+    questionsListSrc: state.quiz.questionsListSrc,
+    isMainPageVisible: state.main.isMainPageVisible,
+    answersList: state.quiz.answersList
   }
 }
 
@@ -60,6 +62,8 @@ export type MapStatePropsType = {
   audioQuestionSrc: string
   isQuizRunning: boolean
   questionsListSrc: Array<string>
+  isMainPageVisible: boolean
+  answersList: Array<boolean>
 }
 
 export type MapDispatchPropsType = {

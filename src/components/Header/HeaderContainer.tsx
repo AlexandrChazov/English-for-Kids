@@ -13,7 +13,7 @@ const MapStateToProps = (state: AppStateType): MapStatePropsType => {
     canISeeRunGameButton: state.header.canISeeRunGameButton,
     audioQuestionSrc: state.quiz.audioQuestionSrc,
     answersList: state.quiz.answersList,
-    arrayOfAudioQuestionsSrc: state.mainPage.arrayOfAudioQuestionsSrc
+    arrayOfAudioQuestionsSrc: state.main.arrayOfAudioQuestionsSrc
   }
 }
 

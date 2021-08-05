@@ -6,7 +6,7 @@ const initialState = {
   isNavbarVisible: false,
   arrayOfThemes: [] as Array<CardsBaseKeysType>,
   arrayOfNavbarIconsUrl: [] as Array<string>,
-  activeLink: "Main Page" as NavbarLinksType
+  activeLink: "Main Page" as NavbarLinksType,
 }
 
 export const navbarReducerActions = {
@@ -63,4 +63,4 @@ export default navbarReducer;
 
 export type NavbarReducerActionsType = InferActionsTypes<typeof navbarReducerActions>;
 type InitialStateType = typeof initialState;
-export type NavbarLinksType = CardsBaseKeysType | "Statistic" | "Main Page"
+export type NavbarLinksType = CardsBaseKeysType | "Wordlist" | "Main Page"

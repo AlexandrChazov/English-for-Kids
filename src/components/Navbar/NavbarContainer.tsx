@@ -11,6 +11,7 @@ import {CardsBaseKeysType} from "../../redux/cardsBase";
 import {MainReducerActionsType, mainReducerActions} from "../../redux/main-reducer";
 import {Dispatch} from "redux";
 import {headerReducerActions, HeaderReducerActionsType} from "../../redux/header-reducer";
+import {statisticReducerActions, StatisticReducerActionsType} from "../../redux/statistic-reducer";
 
 const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
@@ -21,7 +22,10 @@ const MapStateToProps = (state: AppStateType): MapStatePropsType => {
   }
 }
 
-const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | NavbarReducerActionsType | HeaderReducerActionsType>): MapDispatchPropsType => {
+const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType |
+  NavbarReducerActionsType |
+  StatisticReducerActionsType |
+  HeaderReducerActionsType>): MapDispatchPropsType => {
   return {
     setIsNavbarVisible: (arg: boolean) => dispatch(navbarReducerActions.setIsNavbarVisible(arg)),
     insertTheme: (theme: CardsBaseKeysType) => dispatch(mainReducerActions.insertTheme(theme)),
@@ -31,6 +35,8 @@ const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType | NavbarRe
     setCanISeeRunGameButton: (canISee: boolean) => dispatch(headerReducerActions.setCanISeeRunGameButton(canISee)),
     setIsQuizRunning: (isQuizRunning: boolean) => dispatch(headerReducerActions.setIsQuizRunning(isQuizRunning)),
     setActiveLink: (link: NavbarLinksType) => dispatch(navbarReducerActions.setActiveLink(link)),
+    setIsMainPageVisible: (isVisible: boolean) => dispatch(mainReducerActions.setIsMainPageVisible(isVisible)),
+    setIsStatisticPageVisible: (isVisible: boolean) => dispatch(statisticReducerActions.setIsStatisticPageVisible(isVisible))
   }
 }
 
@@ -44,12 +50,14 @@ export type MapStatePropsType = {
 }
 
 export type MapDispatchPropsType = {
-  setIsNavbarVisible: (arg: boolean) => void,
-  insertTheme: (theme: CardsBaseKeysType) => void,
-  setMainPageCards: (arr: Array<CardsBaseKeysType>) => void,
-  getArrayOfThemes: () => void,
-  getArrayOfNavbarIconsUrl: () => void,
-  setCanISeeRunGameButton: (canISee: boolean) => void,
-  setIsQuizRunning: (isQuizRunning: boolean) => void,
-  setActiveLink: (link: NavbarLinksType) => void,
+  insertTheme: (theme: CardsBaseKeysType) => void
+  setMainPageCards: (arr: Array<CardsBaseKeysType>) => void
+  getArrayOfThemes: () => void
+  getArrayOfNavbarIconsUrl: () => void
+  setCanISeeRunGameButton: (canISee: boolean) => void
+  setIsQuizRunning: (isQuizRunning: boolean) => void
+  setActiveLink: (link: NavbarLinksType) => void
+  setIsNavbarVisible: (arg: boolean) => void
+  setIsMainPageVisible: (isVisible: boolean) => void
+  setIsStatisticPageVisible: (isVisible: boolean) => void
 }

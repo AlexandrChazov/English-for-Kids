@@ -3,12 +3,14 @@ import mainReducer from "./main-reducer";
 import navbarReducer from "./navbar-reducer";
 import headerReducer from "./header-reducer";
 import quizReducer from "./quiz-reducer";
+import statisticReducer from "./statistic-reducer";
 
 const reducers = combineReducers({
   header: headerReducer,
-  mainPage: mainReducer,
+  main: mainReducer,
   navbar: navbarReducer,
   quiz: quizReducer,
+  statistic: statisticReducer
 })
 
 const store = createStore(reducers);
