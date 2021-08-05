@@ -79,7 +79,7 @@ const Main: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
                                victoryImage.current.classList.remove(styles.hide);
                                setTimeout(() => {
                                  window.location.reload();
-                               }, 3000);
+                               }, 4000);
                              }
                              audioEffect.play()
                            }, 1000);
