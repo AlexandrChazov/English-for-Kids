@@ -16,18 +16,18 @@ const MapStateToProps = (state: AppStateType) => {
 
 const MapDispatchToProps = (dispatch: Dispatch<StatisticReducerActionsType>) => {
   return {
-    setWords: (wordsArray: Array<Array<WordsArrayType>>) => dispatch(statisticReducerActions.setWords(wordsArray))
+    setWords: (wordsArray: Array<WordsArrayType>) => dispatch(statisticReducerActions.setWords(wordsArray))
   }
 }
-
+//@ts-ignore
 export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(MapStateToProps, MapDispatchToProps)(Wordlist);
 
 export type MapStatePropsType = {
   isStatisticPageVisible: boolean,
-  wordsArray: Array<Array<WordsArrayType>>;
+  wordsArray: Array<WordsArrayType>;
   arrayOfThemes: Array<CardsBaseKeysType>
 }
 
 export type MapDispatchPropsType = {
-  setWords: (wordsArray: Array<Array<WordsArrayType>>) => void
+  setWords: (wordsArray: Array<WordsArrayType>) => void
 }

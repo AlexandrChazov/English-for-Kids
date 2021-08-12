@@ -15,6 +15,7 @@ function App() {
         <NavbarContainer/>
         <HeaderContainer/>
         <MainContainer/>
+        {/*@ts-ignore*/}
         <WordlistContainer/>
         <OverlayContainer/>
       </div>

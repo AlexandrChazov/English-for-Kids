@@ -3,7 +3,7 @@ import {CardsBaseKeysType} from "./cardsBase";
 
 const initialState = {
   isStatisticPageVisible: false,
-  wordsArray: [] as Array<Array<WordsArrayType>>
+  wordsArray: [] as Array<WordsArrayType>
 }
 
 export const statisticReducerActions = {
@@ -11,7 +11,7 @@ export const statisticReducerActions = {
     type: "statistic/setIsStatisticPageVisible",
     isVisible
   }) as const,
-  setWords: (wordsArray: Array<Array<WordsArrayType>>) => ({type: "statistic/setWords", wordsArray}) as const,
+  setWords: (wordsArray: Array<WordsArrayType>) => ({type: "statistic/setWords", wordsArray}) as const,
 }
 
 const wordlistReducer = (state = initialState, action: StatisticReducerActionsType) => {

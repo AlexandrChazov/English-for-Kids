@@ -19,8 +19,7 @@ const Wordlist: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => 
       </tr>
       </thead>
       <tbody className="tbody">
-      {props.wordsArray.map((item:Array<WordsArrayType>) => {
-        return item.map((el:WordsArrayType, index: number) => {
+      {props.wordsArray.map((el:WordsArrayType, index: number) => {
           return (
             <tr className="thead" key={index}>
               <th className={styles.colName}>{el.theme}</th>
@@ -28,7 +27,6 @@ const Wordlist: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => 
               <th className={styles.colName}>{el.rus}</th>
             </tr>
           )
-        })
       })}
       </tbody>
     </table>
