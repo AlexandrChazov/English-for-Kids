@@ -8,14 +8,14 @@ const Navbar: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
   function changeParameters(canISeeRunGameButton: boolean,
                             activeLink: NavbarLinksType,
                             isMainPageVisible: boolean,
-                            isStatisticPageVisible: boolean) {
+                            isWordlistVisible: boolean) {
     props.setIsQuizRunning(false);
     props.setIsNavbarVisible(false);
 
     props.setCanISeeRunGameButton(canISeeRunGameButton);
     props.setActiveLink(activeLink);
     props.setIsMainPageVisible(isMainPageVisible);
-    props.setIsStatisticPageVisible(isStatisticPageVisible);
+    props.setIsWordlistVisible(isWordlistVisible);
   }
 
   useEffect(() => {

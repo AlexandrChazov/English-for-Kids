@@ -9,6 +9,16 @@
     padding: 0 1rem;
 }
 
+.inputContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    margin-left: 35rem;
+}
+
 .hide {
     display: none;
 }
+

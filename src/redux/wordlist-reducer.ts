@@ -2,13 +2,13 @@ import {InferActionsTypes} from "./redux-store";
 import {CardsBaseKeysType} from "./cardsBase";
 
 const initialState = {
-  isStatisticPageVisible: false,
+  isWordlistVisible: false,
   wordsArray: [] as Array<WordsArrayType>
 }
 
 export const statisticReducerActions = {
-  setIsStatisticPageVisible: (isVisible: boolean) => ({
-    type: "statistic/setIsStatisticPageVisible",
+  setIsWordlistVisible: (isVisible: boolean) => ({
+    type: "statistic/setIsWordlistVisible",
     isVisible
   }) as const,
   setWords: (wordsArray: Array<WordsArrayType>) => ({type: "statistic/setWords", wordsArray}) as const,
@@ -16,10 +16,10 @@ export const statisticReducerActions = {
 
 const wordlistReducer = (state = initialState, action: StatisticReducerActionsType) => {
   switch (action.type) {
-    case "statistic/setIsStatisticPageVisible": {
+    case "statistic/setIsWordlistVisible": {
       return {
         ...state,
-        isStatisticPageVisible: action.isVisible
+        isWordlistVisible: action.isVisible
       }
     }
     case "statistic/setWords": {

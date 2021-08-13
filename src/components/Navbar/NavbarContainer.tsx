@@ -36,7 +36,7 @@ const MapDispatchToProps = (dispatch: Dispatch<MainReducerActionsType |
     setIsQuizRunning: (isQuizRunning: boolean) => dispatch(headerReducerActions.setIsQuizRunning(isQuizRunning)),
     setActiveLink: (link: NavbarLinksType) => dispatch(navbarReducerActions.setActiveLink(link)),
     setIsMainPageVisible: (isVisible: boolean) => dispatch(mainReducerActions.setIsMainPageVisible(isVisible)),
-    setIsStatisticPageVisible: (isVisible: boolean) => dispatch(statisticReducerActions.setIsStatisticPageVisible(isVisible))
+    setIsWordlistVisible: (isVisible: boolean) => dispatch(statisticReducerActions.setIsWordlistVisible(isVisible))
   }
 }
 
@@ -59,5 +59,5 @@ export type MapDispatchPropsType = {
   setActiveLink: (link: NavbarLinksType) => void
   setIsNavbarVisible: (arg: boolean) => void
   setIsMainPageVisible: (isVisible: boolean) => void
-  setIsStatisticPageVisible: (isVisible: boolean) => void
+  setIsWordlistVisible: (isVisible: boolean) => void
 }

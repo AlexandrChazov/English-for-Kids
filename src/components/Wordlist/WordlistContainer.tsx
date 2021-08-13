@@ -8,7 +8,7 @@ import {Dispatch} from "redux";
 
 const MapStateToProps = (state: AppStateType) => {
   return {
-    isStatisticPageVisible: state.wordlist.isStatisticPageVisible,
+    isWordlistVisible: state.wordlist.isWordlistVisible,
     wordsArray: getWords(state),
     arrayOfThemes: state.navbar.arrayOfThemes
   }
@@ -19,11 +19,11 @@ const MapDispatchToProps = (dispatch: Dispatch<StatisticReducerActionsType>) => 
     setWords: (wordsArray: Array<WordsArrayType>) => dispatch(statisticReducerActions.setWords(wordsArray))
   }
 }
-//@ts-ignore
+
 export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(MapStateToProps, MapDispatchToProps)(Wordlist);
 
 export type MapStatePropsType = {
-  isStatisticPageVisible: boolean,
+  isWordlistVisible: boolean,
   wordsArray: Array<WordsArrayType>;
   arrayOfThemes: Array<CardsBaseKeysType>
 }
