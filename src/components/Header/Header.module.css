@@ -85,3 +85,97 @@ h1 {
 .hide {
     display: none;
 }
+
+@media screen and (max-width: 900px) {
+
+    h1 {
+        font-size: 7rem;
+    }
+
+    .emojiPanel {
+        width: 45rem;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    .emojiPanel {
+        width: 40rem;
+    }
+    .startGameButton {
+        top: 11rem
+    }
+
+    .fa-caret-square-right {
+        font-size: 4rem;
+    }
+
+    .fa-sync-alt {
+        font-size: 4rem;
+    }
+
+}
+
+@media screen and (max-width: 579px) {
+
+    h1 {
+        font-size: 5rem;
+        width: 16rem;
+    }
+
+    .gameMode {
+        width: 6rem;
+        height: 3rem;
+        background-color: #ffffff;
+        position: absolute;
+        top: 4rem;
+        right: 4rem;
+        display: flex;
+        align-items: center;
+        border-radius: 2rem;
+        cursor: pointer;
+    }
+
+    .gameModeTrigger {
+        width: 2rem;
+        height: 2rem;
+        background-color: #383838;
+        position: absolute;
+        left: 0.5rem;
+        border-radius: 50%;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .play {
+        transform: translateX(3rem);
+    }
+
+
+    .gameModeTitle {
+        display: none;
+    }
+
+    .emojiPanel {
+        width: 24rem;
+    }
+
+    .startGameButton {
+        right: 5rem;
+    }
+
+    .fa-caret-square-right {
+        font-size: 5rem;
+    }
+
+    .fa-sync-alt {
+        font-size: 4rem;
+    }
+
+}
+
+
