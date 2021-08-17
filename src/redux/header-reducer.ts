@@ -14,7 +14,7 @@ const initialState = {
   canISeeRunGameButton: false
 }
 
-const headerReducer = (state = initialState, action: HeaderReducerActionsType): InitialStateType => {
+export const headerReducer = (state = initialState, action: HeaderReducerActionsType): InitialStateType => {
   switch (action.type) {
     case "header/setPlayModeOn": {
       return {
